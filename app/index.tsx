@@ -9,11 +9,11 @@ export default function Home() {
   return (
     <>
       <Stack.Screen options={{ title: 'Home', headerShown: false }} />
-      <Container className="bg-slate-200">
-        <View className='mt-5'>
+      <Container className="">
+        <View className='mt-10'>
         <MainSearch />
         </View>
-        <View>
+        <View className='mt-10 mx-5'>
         <MainMenu />
         </View>
       </Container>
