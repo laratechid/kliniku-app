@@ -2,7 +2,7 @@ import React from 'react';
 import { View, Text, Image } from 'react-native';
 import { SimpleGrid } from 'react-native-super-grid';
 
-import { mainMenu } from '~/const/menu';
+import { mainMenu } from '~/const/static/menu';
 
 export const MainMenu = () => {
   return (

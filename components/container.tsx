@@ -5,7 +5,7 @@ export const Container = ({
   className,
 }: {
   children: React.ReactNode;
-  className: string;
+  className?: string;
 }) => {
   return <SafeAreaView className={`m-6 flex flex-1  ${className}`}>{children}</SafeAreaView>;
 };
