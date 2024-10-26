@@ -11,7 +11,7 @@ export const MainMenu = () => {
         <SimpleGrid
           listKey=""
           data={mainMenu}
-          itemDimension={70}
+          itemDimension={60}
           renderItem={({ item }) => (
             <View className="m-3 items-center">
               <Image source={require('../assets/favicon.png')} style={{ width: 40, height: 40 }} />
