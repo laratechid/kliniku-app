@@ -15,7 +15,7 @@ export const ClinicList = () => {
           <View className="flex flex-row flex-wrap p-2">
             <View className="basis-1/3">
               <Image
-                source={require('../assets/home/banner/mainbanner.jpg')}
+                source={require('../assets/dummy/clinic.jpg')}
                 style={{ width: 'auto', height: 100, borderRadius: 10 }}
                 resizeMode="cover"
               />
