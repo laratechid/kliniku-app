@@ -9,7 +9,7 @@ import { CardImages } from '~/components-micro/sub-menu';
 import { RowPills } from '~/components-micro/row-pills';
 
 export default function ClinicDetailScreen() {
-  const { images, name, distance, openDays, openSchedule, rating, polyclinics } = useLocalSearchParams();
+  const { images, name, distance, openDays, openSchedule, rating, polyclinics, paymentSupports } = useLocalSearchParams();
   return (
     <>
       <Stack.Screen options={{ title: 'ClinicList', headerShown: false }} />
@@ -38,7 +38,7 @@ export default function ClinicDetailScreen() {
           </View>
           <Text className="ms-2 text-sm text-slate-700 mt-5">Dukungan Pembayaran</Text>
           <View>
-          <RowPills titles={["Umum", "BPJS"]}/>
+          <RowPills titles={paymentSupports.toString().split(',')}/>
           </View>
         </Container>
       </ScrollView>

@@ -20,7 +20,8 @@ export const ClinicList = () => {
             openDays: item.openDays,
             openSchedule: item.openSchedule,
             rating: item.rating,
-            polyclinics: item.polyclinics
+            polyclinics: item.polyclinics,
+            paymentSupports: item.paymentSupports
           }
         }} asChild>
           <Pressable key={index} className="my-1 rounded-xl bg-slate-300">

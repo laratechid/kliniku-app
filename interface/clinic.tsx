@@ -8,4 +8,5 @@ export interface Clinic {
   isVerified: boolean;
   openSchedule: string;
   openDays: string;
+  paymentSupports: string[]
 }
