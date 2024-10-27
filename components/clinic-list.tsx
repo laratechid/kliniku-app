@@ -12,7 +12,16 @@ export const ClinicList = () => {
   return clinicList.map((item: Clinic, index: number) => {
     return (
       <>
-        <Link href={{ pathname: '/clinic-detail', params: { images: item.images } }} asChild>
+        <Link href={{
+          pathname: '/clinic-detail', params: {
+            images: item.images,
+            name: item.name,
+            distance: item.distance,
+            openDays: item.openDays,
+            openSchedule: item.openSchedule,
+            rating: item.rating
+          }
+        }} asChild>
           <Pressable key={index} className="my-1 rounded-xl bg-slate-300">
             <View className="flex flex-row flex-wrap p-2">
               <View className="basis-1/3">

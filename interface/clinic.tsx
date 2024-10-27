@@ -7,4 +7,5 @@ export interface Clinic {
   rating: number;
   isVerified: boolean;
   openSchedule: string;
+  openDays: string;
 }

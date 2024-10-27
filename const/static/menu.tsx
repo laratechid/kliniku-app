@@ -23,6 +23,7 @@ export const clinicList: Clinic[] = [
     rating: 4.5,
     isVerified: false,
     openSchedule: '14:00 - 21:00',
+    openDays: "Senin - Jumat"
   },
   {
     id: '2',
@@ -33,6 +34,7 @@ export const clinicList: Clinic[] = [
     rating: 4.5,
     isVerified: false,
     openSchedule: '14:00 - 21:00',
+    openDays: "Senin - Jumat"
   },
   {
     id: '3',
@@ -43,5 +45,6 @@ export const clinicList: Clinic[] = [
     rating: 4.5,
     isVerified: false,
     openSchedule: '14:00 - 21:00',
+    openDays: "Senin - Jumat"
   },
 ];
