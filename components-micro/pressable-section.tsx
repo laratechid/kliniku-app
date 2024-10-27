@@ -8,7 +8,7 @@ export const PressableSection = ({ title, href }: { title: string; href: Href })
   const { name } = useLocalSearchParams();
   return (
     <View className="flex flex-row items-center">
-      <Pressable onPress={() => console.log()}>
+      <Pressable>
         <Link href={href}>
           <Text className="mr-2 text-sm">{title}</Text>
         </Link>

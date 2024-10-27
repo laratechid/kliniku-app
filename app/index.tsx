@@ -7,7 +7,6 @@ import { Container } from '~/components/container';
 import { MainMenu } from '~/components/main-menu';
 import { MainSearch } from '~/components/main-search';
 import { PressableSection } from '~/components-micro/pressable-section';
-import { ImageCarousel } from '~/components-micro/carousel';
 
 export default function Home() {
   return (
