@@ -4,7 +4,6 @@ import { SimpleGrid } from "react-native-super-grid"
 
 export const CardImages = ({ titles }: { titles: string[] }) => {
     return(
-        <>
             <SimpleGrid
               data={titles}
               listKey=""
@@ -20,6 +19,5 @@ export const CardImages = ({ titles }: { titles: string[] }) => {
                 </ImageBackground>
               )}
             />
-        </>
     )
 }
