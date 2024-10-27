@@ -19,7 +19,8 @@ export const ClinicList = () => {
             distance: item.distance,
             openDays: item.openDays,
             openSchedule: item.openSchedule,
-            rating: item.rating
+            rating: item.rating,
+            polyclinics: item.polyclinics
           }
         }} asChild>
           <Pressable key={index} className="my-1 rounded-xl bg-slate-300">

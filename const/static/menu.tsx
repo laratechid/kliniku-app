@@ -17,7 +17,7 @@ export const clinicList: Clinic[] = [
     ],
     images: [
       'https://dummyimage.com/600x400/4f4f4e/ffffff',
-      'https://dummyimage.com/600x400/b8b835/ffffff',
+      'https://dummyimage.com/600x400/4f4f4e/ffffff',
     ],
     distance: '2.6 km',
     rating: 4.5,
@@ -40,7 +40,7 @@ export const clinicList: Clinic[] = [
     id: '3',
     name: 'Klinik Sinatra',
     polyclinics: ['Poli Umum', 'Poli Gigi', 'Poli Anak', 'Poli Jantung'],
-    images: ['https://dummyimage.com/600x400/b8b835/ffffff'],
+    images: ['https://dummyimage.com/600x400/4f4f4e/ffffff'],
     distance: '2.6 km',
     rating: 4.5,
     isVerified: false,
