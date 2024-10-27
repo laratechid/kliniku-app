@@ -36,8 +36,8 @@ export default function ClinicDetailScreen() {
           <View className='mx-5 mt-3'>
             <CardImages titles={polyclinics.toString().split(',')} />
           </View>
-          <Text className="ms-2 text-sm text-slate-700 mt-5">Dukungan Pembayaran</Text>
-          <View>
+          <Text className="ms-2 text-sm text-slate-700 mt-3">Dukungan Pembayaran</Text>
+          <View className='mt-3'>
           <RowPills titles={paymentSupports.toString().split(',')}/>
           </View>
         </Container>
