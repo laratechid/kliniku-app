@@ -8,7 +8,7 @@ export const CardImages = ({ titles }: { titles: string[] }) => {
     <SimpleGrid
       data={titles}
       listKey=""
-      spacing={5}
+      spacing={15}
       renderItem={({ item }) => (
         <ImageBackground
           className={`h-20 w-[${width / 2}] bg-gray-200 rounded-xl rounded-lg overflow-hidden`}

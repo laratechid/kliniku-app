@@ -9,17 +9,17 @@ export const ImageCarousel = ({ images }: { images: string[] }) => {
     <View style={styles.container}>
       <Carousel
         loop
-        width={width * 8} // 80% of screen width
-        height={width / 2} // Maintain aspect ratio (width / 2)
+        width={width / 1.2}
+        height={width / 2}
         autoPlay
         data={images}
         scrollAnimationDuration={2000}
-        // onSnapToItem={(index) => console.log('current index:', index)}
         renderItem={({ index, item }) => (
           <View key={index} style={styles.imageContainer}>
-            <Image source={{ uri: item }} style={styles.image} resizeMode="contain" />
+            <Image source={{ uri: item }} style={styles.image} resizeMode="cover" />
           </View>
         )}
+        // onSnapToItem={(index) => console.log('current index:', index)}
       />
     </View>
   );
@@ -30,10 +30,12 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
+    marginVertical: 5
   },
   imageContainer: {
     flex: 1,
     justifyContent: 'center',
+    marginHorizontal: 5
   },
   image: {
     width: '100%',
