@@ -7,6 +7,7 @@ import { Container } from '~/components/container';
 import { MainMenu } from '~/components/main-menu';
 import { MainSearch } from '~/components/main-search';
 import { PressableSection } from '~/components-micro/pressable-section';
+import { ImageCarousel } from '~/components-micro/carousel';
 
 export default function Home() {
   return (
@@ -22,8 +23,8 @@ export default function Home() {
           </View>
           <View>
             <PressableSection
-              title="Klikik Sekitarmu"
-              href={{ pathname: '/details', params: { name: 'Hai' } }}
+              title="Klinik Sekitarmu"
+              href={{ pathname: '/clinic-list', params: { name: 'Hai' } }}
             />
           </View>
           <View className="mt-5">
