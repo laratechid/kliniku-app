@@ -1,17 +1,14 @@
+import { faFilter, faLocationDot } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 import { Stack, useRouter } from 'expo-router';
 import React, { useEffect, useState } from 'react';
-import { View, ScrollView, Pressable, Image, Text } from 'react-native';
+import { ScrollView, View, TextInput, Pressable, Image, Text } from 'react-native';
+import { SimpleGrid } from 'react-native-super-grid';
 
 import { Container } from '~/components/container';
-import { MainMenu } from '~/components/main-menu';
-import { MainSearch } from '~/components/main-search';
-import { PressableSection } from '~/components-micro/pressable-section';
 import { ResponsePaginate } from '~/interface/response';
-import { SimpleGrid } from 'react-native-super-grid';
-import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
-import { faLocationDot } from '@fortawesome/free-solid-svg-icons';
 
-export default function Home() {
+export default function ClinicListScreen() {
 
   const [data, setData] = useState<ResponsePaginate>({
     statusCode: 200,
@@ -39,24 +36,24 @@ export default function Home() {
       pathname: '/clinic/detail', params: { id }
      })
   }
+  
   return (
     <>
-      <Stack.Screen options={{ title: 'Home', headerShown: false }} />
+      <Stack.Screen options={{ title: 'ClinicList', headerShown: false }} />
       <ScrollView>
-        <Container>
-          <View className="mt-10">
-            <MainSearch />
-          </View>
-          <View className="mx-5 mt-8">
-            <MainMenu />
+        <Container className="mt-20">
+          <View className="flex flex-row items-center">
+            <View className="mr-4 basis-5/6">
+              <TextInput
+                className="mx-1 my-3 my-8 rounded-full border border-sky-300 px-3 py-1 text-slate-500 placeholder:text-slate-300 focus:border-sky-500 focus:shadow focus:shadow-sky-200 focus:outline-sky-500"
+                placeholder="Cari klinik"
+              />
+            </View>
+            <View className="flex-auto">
+              <FontAwesomeIcon icon={faFilter} size={18} color="gray" />
+            </View>
           </View>
           <View>
-            <PressableSection
-              title="Klinik Sekitarmu"
-              href={{ pathname: '/clinic/list', params: { name: 'Hai' } }}
-            />
-          </View>
-          <View className="mt-5">
           {data.message.map((item, index) => (
           <Pressable key={index} onPress={()=> routeDetailScreen(item.id)} className="my-1 rounded-xl bg-slate-300">
             <View className="flex flex-row flex-wrap p-2">

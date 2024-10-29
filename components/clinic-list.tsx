@@ -1,6 +1,6 @@
 import { faLocationDot } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
-import { Link } from 'expo-router';
+import { useRouter } from 'expo-router';
 import React from 'react';
 import { View, Text, Image, Pressable } from 'react-native';
 import { SimpleGrid } from 'react-native-super-grid';
@@ -9,22 +9,16 @@ import { clinicList } from '~/const/static/menu';
 import { Clinic } from '~/interface/clinic';
 
 export const ClinicList = () => {
-  return clinicList.map((item: Clinic, index: number) => {
-    return (
-      <>
-        <Link href={{
-          pathname: '/clinic-detail', params: {
-            images: item.images,
-            name: item.name,
-            distance: item.distance,
-            openDays: item.openDays,
-            openSchedule: item.openSchedule,
-            rating: item.rating,
-            polyclinics: item.polyclinics,
-            paymentSupports: item.paymentSupports
-          }
-        }} asChild>
-          <Pressable key={index} className="my-1 rounded-xl bg-slate-300">
+  const router = useRouter()
+  const routeToDetail = ( item: Clinic ) => {
+    router.push({ 
+      pathname: '/clinic/detail', params: { id: item.id }
+     })
+  }
+  return (
+    <>
+      {clinicList.map((item, index) => (
+          <Pressable key={index} onPress={()=> routeToDetail(item)} className="my-1 rounded-xl bg-slate-300">
             <View className="flex flex-row flex-wrap p-2">
               <View className="basis-1/3">
                 <Image
@@ -43,7 +37,7 @@ export const ClinicList = () => {
                     itemDimension={70}
                     renderItem={({ item }) => (
                       <View className="m-[1px] rounded-full bg-slate-400 px-2">
-                        <Text className="text-xs text-slate-100">{item}</Text>
+                        <Text className="text-xs text-slate-100">{item.name}</Text>
                       </View>
                     )}
                   />
@@ -56,8 +50,7 @@ export const ClinicList = () => {
               </View>
             </View>
           </Pressable>
-        </Link>
-      </>
-    );
-  });
+      ))}
+    </>
+  );
 };

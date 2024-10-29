@@ -1,7 +1,13 @@
+interface PolyClinic{
+  id: string
+  name: string
+  image: string
+}
+
 export interface Clinic {
   id: string;
   name: string;
-  polyclinics: string[];
+  polyclinics: PolyClinic[];
   images: string[];
   distance: string;
   rating: number;
