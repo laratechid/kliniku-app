@@ -12,7 +12,7 @@ export const QueueRegistered = () => {
                                 <Text className="text-3xl text-slate-700">30</Text>
                             </View>
                         </View>
-                        <View className="basis-1/2 h-24 items-center justify-center">
+                        <View className="basis-1/2 h-24 justify-center">
                             <Text className="text-sm text-slate-700">Total Pasien</Text>
                         </View>
                     </View>
@@ -26,7 +26,7 @@ export const QueueRegistered = () => {
                                 <Text className="text-3xl text-slate-700">30</Text>
                             </View>
                         </View>
-                        <View className="basis-1/2 h-24 items-center justify-center">
+                        <View className="basis-1/2 h-24 justify-center">
                             <Text className="text-sm text-slate-700">Antrian Anda</Text>
                         </View>
                     </View>
