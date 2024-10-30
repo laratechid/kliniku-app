@@ -34,11 +34,6 @@ export default function Home() {
   
   const router = useRouter()
 
-  const routeDetailScreen = ( id: number ) => {
-    router.push({ 
-      pathname: '/clinic/detail', params: { id }
-     })
-  }
   return (
     <>
       <Stack.Screen options={{ title: 'Home', headerShown: false }} />
@@ -58,7 +53,9 @@ export default function Home() {
           </View>
           <View className="mt-5">
           {data.message.map((item, index) => (
-          <Pressable key={index} onPress={()=> routeDetailScreen(item.id)} className="my-1 rounded-xl bg-slate-300">
+          <Pressable key={index} onPress={()=> router.push({ 
+            pathname: '/clinic/detail', params: { id: item.id }
+           })} className="my-1 rounded-xl bg-slate-300">
             <View className="flex flex-row flex-wrap p-2">
               <View className="basis-1/3">
                 <Image
