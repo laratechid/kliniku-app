@@ -10,22 +10,19 @@ import { polyEvent } from '~/const/event';
 import { socketService } from '~/service/socket.io';
 
 export default function QueueScreen() {
-  const { id } = useLocalSearchParams();
+  const { id } = useLocalSearchParams<{ id: string }>();
   const [data, setData] = useState<any>({ id: 0, queues: [] });
 
-  const fetchData = () => {
-    fetch(`http://10.0.2.2:5000/polyclinic/${id}`);
-  };
-
   useEffect(() => {
-    socketService.connect();
-    fetchData();
-    socketService.onEvent(polyEvent(id.toString()), (res) => {
-      setData(res);
+    socketService.connect(() => {
+        socketService.onEvent(polyEvent(id), (res) => {
+            setData(res);
+        });
+        fetch(`http://10.0.2.2:5000/polyclinic/${id}`)
     });
-    // TODO => Disconnect socket when move to another screen
-    // return () => socketService.disconnect();
-  }, []);
+    return () => socketService.disconnect();
+}, [id]);
+
   return (
     <>
       <Stack.Screen options={{ title: 'QueueDetail', headerShown: false }} />
