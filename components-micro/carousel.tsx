@@ -30,12 +30,12 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    marginVertical: 5
+    marginVertical: 5,
   },
   imageContainer: {
     flex: 1,
     justifyContent: 'center',
-    marginHorizontal: 5
+    marginHorizontal: 5,
   },
   image: {
     width: '100%',

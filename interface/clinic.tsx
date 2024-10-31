@@ -1,7 +1,7 @@
-interface PolyClinic{
-  id: string
-  name: string
-  image: string
+interface PolyClinic {
+  id: string;
+  name: string;
+  image: string;
 }
 
 export interface Clinic {
@@ -14,5 +14,5 @@ export interface Clinic {
   isVerified: boolean;
   openSchedule: string;
   openDays: string;
-  paymentSupports: string[]
+  paymentSupports: string[];
 }
