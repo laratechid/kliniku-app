@@ -6,6 +6,7 @@ import { ClinicProfilePoly } from "~/components/clinic-detail";
 import { QueueRegistered } from "~/components/queue-registered";
 import { QueueBoard } from "~/components/queue-board";
 import { socketService } from "~/service/socket.io";
+import { polyEvent } from "~/const/event";
 
 
 
@@ -21,7 +22,7 @@ export default function QueueScreen() {
     useEffect(()=> {
         socketService.connect();
         fetchData()
-        socketService.onEvent('POLY-1', (res) => {
+        socketService.onEvent(polyEvent(id.toString()), (res) => {
             setData(res);
         });
         // TODO => Disconnect socket when move to another screen
