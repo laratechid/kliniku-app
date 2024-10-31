@@ -59,7 +59,7 @@ export default function ClinicDetailScreen() {
               spacing={15}
               renderItem={({ item }) => (
                 <Pressable onPress={()=>  router.push({ 
-                  pathname: '/queue/detail', params: { id: item.poly.id }
+                  pathname: '/queue/detail', params: { id: item.id }
                  })}>
                 <ImageBackground
                   className={`h-20 w-[${width / 2}] bg-gray-200 rounded-xl rounded-lg overflow-hidden`}

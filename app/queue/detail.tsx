@@ -1,51 +1,32 @@
 import { Stack, useLocalSearchParams } from "expo-router";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Container } from "~/components/container";
 import { ScrollView, View, Text } from "react-native";
 import { ClinicProfilePoly } from "~/components/clinic-detail";
 import { QueueRegistered } from "~/components/queue-registered";
 import { QueueBoard } from "~/components/queue-board";
+import { socketService } from "~/service/socket.io";
 
-const data = [
-    {
-        sequence: 1,
-        status: "COMPLETED"
-    },
-    {      
-        sequence: 2,
-        status: "COMPLETED"
-    },
-    {
-        sequence: 3,
-        status: "SKIPPED"
-    },
-    {      
-        sequence: 4,
-        status: "ON_GOING"
-    },
-    {
-        sequence: 5,
-        status: "BOOKED"
-    },
-    {      
-        sequence: 6,
-        status: "BOOKED"
-    },
-    {
-        sequence: 7,
-        status: "BOOKED"
-    },
-    {      
-        sequence: 8,
-        status: "BOOKED"
-    },
-    {
-        sequence: 9,
-        status: "BOOKED"
-    }
-]
+
+
 
 export default function QueueScreen() {
+    const { id } = useLocalSearchParams()
+    const [data, setData] = useState<any>({ id: 0, queues: [] })
+    
+    const fetchData = () => {
+        fetch(`http://10.0.2.2:5000/polyclinic/${id}`)
+    }
+
+    useEffect(()=> {
+        socketService.connect();
+        fetchData()
+        socketService.onEvent('POLY-1', (res) => {
+            setData(res);
+        });
+        // TODO => Disconnect socket when move to another screen
+        // return () => socketService.disconnect();
+    },[])
     return (
         <>
             <Stack.Screen options={{ title: 'QueueDetail', headerShown: false }} />
@@ -59,7 +40,7 @@ export default function QueueScreen() {
                     </View>
                     <View className="mt-10 mx-5">
                         <Text className="text-sm text-slate-700 mt-3">Live Antrian</Text>
-                        <QueueBoard queues={data} />
+                        <QueueBoard queues={data.queues} />
                     </View>
                 </Container>
             </ScrollView>
