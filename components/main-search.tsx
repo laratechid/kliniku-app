@@ -6,7 +6,7 @@ import { View, TextInput, Image } from 'react-native';
 export const MainSearch = () => {
   return (
     <>
-      <View className="h-80 rounded-xl bg-slate-200 py-5">
+      <View className="rounded-xl bg-slate-200 pt-5">
         <View className="mx-auto flex flex-row items-center">
           <View className="basis-5/6">
             <TextInput
@@ -18,9 +18,9 @@ export const MainSearch = () => {
             <FontAwesomeIcon icon={faCircleUser} size={40} color="gray" />
           </View>
         </View>
-        <View className="p-5 ">
+        <View className="p-5 mt-3">
           <Image
-            source={require('../assets/home/banner/mainbanner.jpg')}
+            source={{ uri: "https://dummyimage.com/600x400/4f4f4e/ffffff" }}
             style={{ width: 'auto', height: 155, borderRadius: 10 }}
             resizeMode="cover"
           />
