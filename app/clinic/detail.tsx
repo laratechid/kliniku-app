@@ -8,6 +8,7 @@ import { Container } from '~/components/container';
 import { ImageCarousel } from '~/components-micro/carousel';
 import { RowPills } from '~/components-micro/row-pills';
 import { Response } from '~/interface/response';
+import { env } from '~/config/env';
 
 export default function ClinicDetailScreen() {
   const router = useRouter();
@@ -19,7 +20,7 @@ export default function ClinicDetailScreen() {
   });
 
   const fetchData = async () => {
-    const get = await fetch(`http://10.0.2.2:5000/clinic/${id}`);
+    const get = await fetch( env.klinikuApiUrl + `/clinic/${id}`);
     const response: Response = await get.json();
     setData(response);
     return response;

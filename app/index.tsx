@@ -10,6 +10,7 @@ import { MainMenu } from '~/components/main-menu';
 import { MainSearch } from '~/components/main-search';
 import { PressableSection } from '~/components-micro/pressable-section';
 import { ResponsePaginate } from '~/interface/response';
+import { env } from '~/config/env';
 
 export default function Home() {
   const [data, setData] = useState<ResponsePaginate>({
@@ -21,7 +22,7 @@ export default function Home() {
   });
 
   const fetchData = async () => {
-    const get = await fetch('http://10.0.2.2:5000/clinic?page=1&limit=10');
+    const get = await fetch( env.klinikuApiUrl + "/clinic?page=1&limit=10");
     const response: ResponsePaginate = await get.json();
     setData(response);
     return response;

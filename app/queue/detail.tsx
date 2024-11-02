@@ -6,6 +6,7 @@ import { ClinicProfilePoly } from '~/components/clinic-detail';
 import { Container } from '~/components/container';
 import { QueueBoard } from '~/components/queue-board';
 import { QueueRegistered } from '~/components/queue-registered';
+import { env } from '~/config/env';
 import { polyEvent } from '~/const/event';
 import { socketService } from '~/service/socket.io';
 
@@ -18,7 +19,7 @@ export default function QueueScreen() {
         socketService.onEvent(polyEvent(id), (res) => {
             setData(res);
         });
-        fetch(`http://10.0.2.2:5000/polyclinic/${id}`)
+        fetch( env.klinikuApiUrl + `/polyclinic/${id}`)
     });
     return () => socketService.disconnect();
 }, [id]);

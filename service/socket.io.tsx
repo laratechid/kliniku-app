@@ -1,11 +1,11 @@
 import { io, Socket } from 'socket.io-client';
+import { env } from '~/config/env';
 
-const SOCKET_URL = 'http://10.0.2.2:5000';
 class SocketService {
   private socket: Socket | null = null;
 
   connect(onConnect?: () => void) {
-    this.socket = io(SOCKET_URL, {
+    this.socket = io(env.klinikuApiUrl, {
       transports: ['websocket'],
     });
 

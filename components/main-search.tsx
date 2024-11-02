@@ -21,7 +21,7 @@ export const MainSearch = () => {
         <View className="p-5 mt-3">
           <Image
             source={{ uri: "https://dummyimage.com/600x400/4f4f4e/ffffff" }}
-            style={{ width: 'auto', height: 155, borderRadius: 10 }}
+            style={{ width: 'auto', height: 200, borderRadius: 10 }}
             resizeMode="cover"
           />
         </View>
