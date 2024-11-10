@@ -1,8 +1,8 @@
 import { Stack, useLocalSearchParams } from 'expo-router';
 import React, { useEffect, useState } from 'react';
-import { ScrollView, View, Text } from 'react-native';
+import { ScrollView, View, Text, ImageBackground } from 'react-native';
 
-import { ClinicProfilePoly } from '~/components/clinic-detail';
+import { ClinicProfile } from '~/components/clinic-detail';
 import { Container } from '~/components/container';
 import { useSession } from '~/components/middleware/context';
 import { QueueBoard } from '~/components/queue-board';
@@ -36,11 +36,20 @@ export default function QueueScreen() {
       <ScrollView>
         <Container className="mt-10">
           <View className="mt-10 rounded-xl bg-slate-200 p-4">
-            <ClinicProfilePoly
+
+            <ClinicProfile
               name="Klinik Pratama Duhita"
-              image="https://dummyimage.com/600x400/4f4f4e/ffffff"
               address="Unnamed Road, Sekar Putih, SekarPutih, Bagor, Nganjuk Regency, East Java 64461"
+              props={<ImageBackground
+                className="mr-2 h-24 basis-3/12 overflow-hidden rounded-xl bg-gray-200"
+                source={{ uri: "https://dummyimage.com/600x400/4f4f4e/ffffff" }}
+                resizeMode="cover">
+                <View className="absolute right-1 top-1 rounded-full bg-gray-300 p-1 px-4">
+                  <Text className="text-xs text-gray-600">Poli Gigi</Text>
+                </View>
+              </ImageBackground>}
             />
+            
           </View>
           <View className="mt-5">
             <QueueRegistered />

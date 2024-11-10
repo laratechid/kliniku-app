@@ -11,6 +11,8 @@ import { Response } from '~/interface/response';
 import { env } from '~/config/env';
 import { useSession } from '~/components/middleware/context';
 import { request } from '~/helper/request';
+import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
+import { faStar } from '@fortawesome/free-solid-svg-icons';
 
 export default function ClinicDetailScreen() {
   const { session } = useSession()
@@ -42,14 +44,24 @@ export default function ClinicDetailScreen() {
       <ScrollView>
         <Container className="mt-10">
           <View className="mt-10 rounded-xl bg-slate-200 p-4">
+
             <ClinicProfile
-              name={data.name}
-              distance={data.distance}
-              openDays={data.openDays}
-              openSchedule={data.openSchedule}
-              rating={data.rating}
+              name="Klinik Pratama Duhita"
+              address="Unnamed Road, Sekar Putih, SekarPutih, Bagor, Nganjuk Regency, East Java 64461"
+              props={
+                <View className="mr-2 h-24 basis-3/12 overflow-hidden rounded-xl justify-center items-center border border-slate-300">
+                  <View className="flex flex-row flex-wrap">
+                    <Text className="ms-1 mt-1 text-sm text-slate-500">Rating</Text>
+                  </View>
+                  <View className="flex flex-row flex-wrap items-center">
+                    <FontAwesomeIcon icon={faStar} size={15} color="gray" />
+                    <Text className="ms-1 mt-1 text-slate-500">4.5</Text>
+                  </View>
+                </View>
+              }
             />
           </View>
+
           <View className="mt-3 rounded-xl border border-slate-100 bg-slate-200 p-2">
             <ImageCarousel images={data.images} />
             <Text className="ms-4 mt-4 text-sm text-slate-700">
