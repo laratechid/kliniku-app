@@ -4,25 +4,32 @@ import { ScrollView, View, Text } from 'react-native';
 
 import { ClinicProfilePoly } from '~/components/clinic-detail';
 import { Container } from '~/components/container';
+import { useSession } from '~/components/middleware/context';
 import { QueueBoard } from '~/components/queue-board';
 import { QueueRegistered } from '~/components/queue-registered';
 import { env } from '~/config/env';
 import { polyEvent } from '~/const/event';
+import { request } from '~/helper/request';
 import { socketService } from '~/service/socket.io';
 
 export default function QueueScreen() {
+  const { session } = useSession()
   const { id } = useLocalSearchParams<{ id: string }>();
   const [data, setData] = useState<any>({ id: 0, queues: [] });
 
   useEffect(() => {
     socketService.connect(() => {
-        socketService.onEvent(polyEvent(id), (res) => {
-            setData(res);
-        });
-        fetch( env.klinikuApiUrl + `/polyclinic/${id}`)
+      socketService.onEvent(polyEvent(id), (res) => {
+        setData(res);
+      });
+      request({
+        method: 'GET',
+        url: env.klinikuApiUrl + `/polyclinic/${id}`,
+        token: session as string
+      })
     });
     return () => socketService.disconnect();
-}, [id]);
+  }, [id]);
 
   return (
     <>

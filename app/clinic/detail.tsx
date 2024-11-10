@@ -9,8 +9,11 @@ import { ImageCarousel } from '~/components-micro/carousel';
 import { RowPills } from '~/components-micro/row-pills';
 import { Response } from '~/interface/response';
 import { env } from '~/config/env';
+import { useSession } from '~/components/middleware/context';
+import { request } from '~/helper/request';
 
 export default function ClinicDetailScreen() {
+  const { session } = useSession()
   const router = useRouter();
   const { width } = Dimensions.get('window');
   const { id } = useLocalSearchParams();
@@ -20,8 +23,12 @@ export default function ClinicDetailScreen() {
   });
 
   const fetchData = async () => {
-    const get = await fetch( env.klinikuApiUrl + `/clinic/${id}`);
-    const response: Response = await get.json();
+    const data = await request({
+      method: 'GET',
+      url: env.klinikuApiUrl + `/clinic/${id}`,
+      token: session as string
+    })
+    const response: Response = data
     setData(response);
     return response;
   };
