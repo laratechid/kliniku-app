@@ -15,7 +15,7 @@ import { useSession } from '~/components/middleware/context';
 import { request } from '~/helper/request';
 
 export default function Home() {
-  const { signOut, getUser, session } = useSession()
+  const { signOut, session } = useSession()
   const [data, setData] = useState<ResponsePaginate>({
     statusCode: 200,
     message: [],
@@ -26,8 +26,7 @@ export default function Home() {
 
   const fetchData = async () => {
     const data = await request({
-      method: 'GET',
-      url: env.klinikuApiUrl + "/clinic?page=1&limit=10",
+      uri: env.klinikuApiUrl + "/clinic?page=1&limit=10",
       token: session as string
     })
     const response: ResponsePaginate = data
@@ -53,7 +52,7 @@ export default function Home() {
             <MainMenu />
           </View>
           <View>
-          <Button title='Get User' onPress={() => {console.log(getUser(), "google_user"); console.log(session, "session")}} />
+          <Button title='Get User' onPress={() => console.log(session, "token")} />
             <Button title='Logout' onPress={() => signOut()} />
             <PressableSection
               title="Klinik Sekitarmu"

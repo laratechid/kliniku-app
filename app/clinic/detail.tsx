@@ -24,8 +24,7 @@ export default function ClinicDetailScreen() {
 
   const fetchData = async () => {
     const data = await request({
-      method: 'GET',
-      url: env.klinikuApiUrl + `/clinic/${id}`,
+      uri: env.klinikuApiUrl + `/clinic/${id}`,
       token: session as string
     })
     const response: Response = data

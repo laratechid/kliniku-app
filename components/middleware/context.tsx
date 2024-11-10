@@ -6,12 +6,14 @@ import { router } from 'expo-router';
 const AuthContext = createContext<{
   signIn: () => void;
   signOut: () => void;
+  refreshSession: () => void,
   getUser: () => User | null;
   session?: string | null;
   isLoading: boolean;
 }>({
   signIn: () => null,
   signOut: () => null,
+  refreshSession: () => null,
   getUser: () => null,
   session: null,
   isLoading: false,
@@ -44,41 +46,49 @@ export function SessionProvider({ children }: PropsWithChildren) {
             offlineAccess: true,
             webClientId: "46234552556-j426ml0qme8u6rcq9dm2sso84etsag32.apps.googleusercontent.com"
           });
-            try {
-              await GoogleSignin.hasPlayServices();
-              const response = await GoogleSignin.signIn();
-              if (isSuccessResponse(response)) {
-                // success login
-                const { idToken } = response.data
-                setSession(idToken);
-              } else {
-                // sign in was cancelled by user
-                console.log("sign in was cancelled by user")
-              }
-            } catch (error) {
-              if (isErrorWithCode(error)) {
-                switch (error.code) {
-                  case statusCodes.IN_PROGRESS:
-                    // operation (eg. sign in) already in progress
-                    console.log("in progress")
-                    break;
-                  case statusCodes.PLAY_SERVICES_NOT_AVAILABLE:
-                    // Android only, play services not available or outdated
-                    console.log("play services not available or outdated")
-                    break;
-                  default:
-                  // some other error happened
-                }
-              } else {
-                // an error that's not related to google sign in occurred
-              }
+          try {
+            await GoogleSignin.hasPlayServices();
+            const response = await GoogleSignin.signIn();
+            if (isSuccessResponse(response)) {
+              // success login
+              const { idToken } = response.data
+              setSession(idToken);
+            } else {
+              // sign in was cancelled by user
+              console.log("sign in was cancelled by user")
             }
+          } catch (error) {
+            if (isErrorWithCode(error)) {
+              switch (error.code) {
+                case statusCodes.IN_PROGRESS:
+                  // operation (eg. sign in) already in progress
+                  console.log("in progress")
+                  break;
+                case statusCodes.PLAY_SERVICES_NOT_AVAILABLE:
+                  // Android only, play services not available or outdated
+                  console.log("play services not available or outdated")
+                  break;
+                default:
+                // some other error happened
+              }
+            } else {
+              // an error that's not related to google sign in occurred
+            }
+          }
           router.replace("/")
         },
         signOut: () => {
           GoogleSignin.signOut()
           setSession(null);
         },
+        refreshSession: () =>
+          GoogleSignin.getTokens()
+            .then(({ idToken }) => {
+              console.log("token refreshed")
+              setSession(idToken)
+            })
+            .catch(() => setSession(null))
+        ,
         getUser: () => {
           return GoogleSignin.getCurrentUser()
         },

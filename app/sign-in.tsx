@@ -1,13 +1,9 @@
-import { router, Stack } from "expo-router"
+import { Stack } from "expo-router"
 import React from "react"
 import { ImageBackground, Text, View } from "react-native"
 import { ContainerFull } from "~/components/container"
 import {
-  GoogleSignin,
   GoogleSigninButton,
-  isErrorWithCode,
-  isSuccessResponse,
-  statusCodes,
 } from '@react-native-google-signin/google-signin';
 import { useSession } from "~/components/middleware/context";
 

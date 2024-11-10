@@ -6,10 +6,13 @@ import { ScrollView, View, TextInput, Pressable, Image, Text } from 'react-nativ
 import { SimpleGrid } from 'react-native-super-grid';
 
 import { Container } from '~/components/container';
+import { useSession } from '~/components/middleware/context';
 import { env } from '~/config/env';
+import { request } from '~/helper/request';
 import { ResponsePaginate } from '~/interface/response';
 
 export default function ClinicListScreen() {
+  const { session } = useSession()
   const [data, setData] = useState<ResponsePaginate>({
     statusCode: 200,
     message: [],
@@ -19,8 +22,11 @@ export default function ClinicListScreen() {
   });
 
   const fetchData = async () => {
-    const get = await fetch(env.klinikuApiUrl + '/clinic?page=1&limit=10');
-    const response: ResponsePaginate = await get.json();
+    const data = await request({
+      uri: env.klinikuApiUrl + "/clinic?page=1&limit=10",
+      token: session as string
+    })
+    const response: ResponsePaginate = data
     setData(response);
     return response;
   };

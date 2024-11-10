@@ -23,8 +23,7 @@ export default function QueueScreen() {
         setData(res);
       });
       request({
-        method: 'GET',
-        url: env.klinikuApiUrl + `/polyclinic/${id}`,
+        uri: env.klinikuApiUrl + `/polyclinic/${id}`,
         token: session as string
       })
     });

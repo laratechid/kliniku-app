@@ -1,9 +1,23 @@
 import '../global.css';
 import { Slot } from 'expo-router';
-import { SessionProvider } from '~/components/middleware/context';
+import { useEffect } from 'react';
+import { SessionProvider, useSession } from '~/components/middleware/context';
 
 export default function Root() {
-  // Set up the auth context and render our layout inside of it.
+    // refresh token even app triggered open
+    const { refreshSession, session } = useSession()
+    refreshSession()
+    
+    // refresh token every 40 minutes
+    useEffect(() => {
+      const interval = setInterval(() => {
+        refreshSession()
+      }, 40 * 60 * 1000);
+  
+      return () => clearInterval(interval);
+    }, []);
+  
+
   return (
     // <Stack />
     <SessionProvider>
