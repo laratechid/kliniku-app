@@ -7,7 +7,7 @@ export default function Root() {
     // refresh token even app triggered open
     const { refreshSession, session } = useSession()
     refreshSession()
-    if(!session) router.push('/sign-in')
+    // if(!session) router.push('/sign-in')
     
     // refresh token every 40 minutes
     useEffect(() => {

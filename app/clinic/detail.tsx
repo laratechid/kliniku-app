@@ -13,6 +13,7 @@ import { useSession } from '~/components/middleware/context';
 import { request } from '~/helper/request';
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 import { faStar } from '@fortawesome/free-solid-svg-icons';
+import { ClinicSchedules } from '~/components/schedule';
 
 export default function ClinicDetailScreen() {
   const { session } = useSession()
@@ -46,16 +47,17 @@ export default function ClinicDetailScreen() {
           <View className="mt-10 rounded-xl bg-slate-200 p-4">
 
             <ClinicProfile
-              name="Klinik Pratama Duhita"
-              address="Unnamed Road, Sekar Putih, SekarPutih, Bagor, Nganjuk Regency, East Java 64461"
-              props={
+              name={data.name}
+              address={data.adress}
+              schedules={data.schedules}
+              firstRow={
                 <View className="mr-2 h-24 basis-3/12 overflow-hidden rounded-xl justify-center items-center border border-slate-300">
                   <View className="flex flex-row flex-wrap">
                     <Text className="ms-1 mt-1 text-sm text-slate-500">Rating</Text>
                   </View>
                   <View className="flex flex-row flex-wrap items-center">
                     <FontAwesomeIcon icon={faStar} size={15} color="gray" />
-                    <Text className="ms-1 mt-1 text-slate-500">4.5</Text>
+                    <Text className="ms-1 mt-1 text-slate-500">{data.rating}</Text>
                   </View>
                 </View>
               }

@@ -5,15 +5,18 @@ import {
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 import React, { ReactNode } from 'react';
 import { View, Text } from 'react-native';
+import { ClinicSchedules } from './schedule';
 
 export const ClinicProfile = ({
   name,
   address,
-  props
+  firstRow,
+  schedules
 }: {
   name: string;
   address: string;
-  props: ReactNode
+  firstRow: ReactNode
+  schedules?: any[]
 }) => {
   return (
     <View>
@@ -23,13 +26,16 @@ export const ClinicProfile = ({
         <FontAwesomeIcon icon={faCircleCheck} size={15} color="gray" />
       </View>
       <View className="flex flex-row flex-wrap">
-          {props}
+          {firstRow}
         <View className="h-24 flex-auto rounded-xl bg-slate-300 p-1">
           <View className="m-auto text-center">
             <Text className="text-xs text-slate-700">Alamat:</Text>
             <Text className="text-xs text-slate-700">{address}</Text>
           </View>
         </View>
+      </View>
+      <View>
+      {schedules ? <ClinicSchedules data={schedules} /> : <></>}
       </View>
     </View>
   );

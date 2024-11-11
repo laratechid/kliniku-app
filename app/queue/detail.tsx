@@ -40,7 +40,7 @@ export default function QueueScreen() {
             <ClinicProfile
               name="Klinik Pratama Duhita"
               address="Unnamed Road, Sekar Putih, SekarPutih, Bagor, Nganjuk Regency, East Java 64461"
-              props={<ImageBackground
+              firstRow={<ImageBackground
                 className="mr-2 h-24 basis-3/12 overflow-hidden rounded-xl bg-gray-200"
                 source={{ uri: "https://dummyimage.com/600x400/4f4f4e/ffffff" }}
                 resizeMode="cover">
