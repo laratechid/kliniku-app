@@ -14,7 +14,9 @@ import { socketService } from '~/service/socket.io';
 
 export default function QueueScreen() {
   const { session } = useSession()
-  const { id } = useLocalSearchParams<{ id: string }>();
+  const { id, clinicName, adress } = useLocalSearchParams<{ 
+    id: string, clinicName: string, adress: string 
+  }>();
   const [data, setData] = useState<any>({ id: 0, queues: [] });
 
   useEffect(() => {
@@ -38,14 +40,14 @@ export default function QueueScreen() {
           <View className="mt-10 rounded-xl bg-slate-200 p-4">
 
             <ClinicProfile
-              name="Klinik Pratama Duhita"
-              address="Unnamed Road, Sekar Putih, SekarPutih, Bagor, Nganjuk Regency, East Java 64461"
+              name={clinicName}
+              address={adress}
               firstRow={<ImageBackground
                 className="mr-2 h-24 basis-3/12 overflow-hidden rounded-xl bg-gray-200"
                 source={{ uri: "https://dummyimage.com/600x400/4f4f4e/ffffff" }}
                 resizeMode="cover">
                 <View className="absolute right-1 top-1 rounded-full bg-gray-300 p-1 px-4">
-                  <Text className="text-xs text-gray-600">Poli Gigi</Text>
+                  <Text className="text-xs text-gray-600">{data.poly?.name}</Text>
                 </View>
               </ImageBackground>}
             />

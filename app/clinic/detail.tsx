@@ -6,14 +6,12 @@ import { SimpleGrid } from 'react-native-super-grid';
 import { ClinicProfile } from '~/components/clinic-detail';
 import { Container } from '~/components/container';
 import { ImageCarousel } from '~/components-micro/carousel';
-import { RowPills } from '~/components-micro/row-pills';
 import { Response } from '~/interface/response';
 import { env } from '~/config/env';
 import { useSession } from '~/components/middleware/context';
 import { request } from '~/helper/request';
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 import { faStar } from '@fortawesome/free-solid-svg-icons';
-import { ClinicSchedules } from '~/components/schedule';
 
 export default function ClinicDetailScreen() {
   const { session } = useSession()
@@ -66,10 +64,7 @@ export default function ClinicDetailScreen() {
 
           <View className="mt-3 rounded-xl border border-slate-100 bg-slate-200 p-2">
             <ImageCarousel images={data.images} />
-            <Text className="ms-4 mt-4 text-sm text-slate-700">
-              Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum
-              has been the industry's standard dummy text ever since the 1500s, when an unknown
-              printer took a galley of type and scrambled it to make a type specimen book.
+            <Text className="ms-4 mt-4 text-sm text-slate-700"> Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.
             </Text>
           </View>
           <Text className="ms-2 mt-8 text-sm text-slate-700">Pilih Poli</Text>
@@ -83,7 +78,7 @@ export default function ClinicDetailScreen() {
                   onPress={() =>
                     router.push({
                       pathname: '/queue/detail',
-                      params: { id: item.id },
+                      params: { id: item.id, clinicName: data.name, adress: data.adress },
                     })
                   }>
                   <ImageBackground
@@ -100,7 +95,13 @@ export default function ClinicDetailScreen() {
           </View>
           <Text className="ms-2 mt-3 text-sm text-slate-700">Dukungan Pembayaran</Text>
           <View className="mt-3">
-            <RowPills data={['BPJS', 'UMUM']} />
+            <View className="flex flex-row">
+              {data.paymentSupports?.map((res: string) => (
+                <View className="m-2 items-center rounded-lg bg-slate-200 px-3 py-2">
+                  <Text className="text-sm text-slate-700">{res}</Text>
+                </View>
+              ))}
+            </View>
           </View>
         </Container>
       </ScrollView>
