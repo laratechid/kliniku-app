@@ -2,19 +2,16 @@ import { useContext, createContext, type PropsWithChildren } from 'react';
 import { useStorageState } from './auth-storage';
 import { GoogleSignin, isSuccessResponse, isErrorWithCode, statusCodes, User } from '@react-native-google-signin/google-signin';
 import { router } from 'expo-router';
+import { env } from '~/config/env';
 
 const AuthContext = createContext<{
   signIn: () => void;
   signOut: () => void;
-  refreshSession: () => void,
-  getUser: () => User | null;
   session?: string | null;
   isLoading: boolean;
 }>({
   signIn: () => null,
   signOut: () => null,
-  refreshSession: () => null,
-  getUser: () => null,
   session: null,
   isLoading: false,
 });
@@ -39,12 +36,12 @@ export function SessionProvider({ children }: PropsWithChildren) {
       value={{
         signIn: async () => {
           GoogleSignin.configure({
-            scopes: [
-              "https://www.googleapis.com/auth/userinfo.email",
-              "https://www.googleapis.com/auth/userinfo.profile"
-            ],
-            offlineAccess: true,
-            webClientId: "46234552556-j426ml0qme8u6rcq9dm2sso84etsag32.apps.googleusercontent.com"
+            // scopes: [
+            //   "https://www.googleapis.com/auth/userinfo.email",
+            //   "https://www.googleapis.com/auth/userinfo.profile"
+            // ],
+            // offlineAccess: true,
+            webClientId: env.googleOauthWebClientId
           });
           try {
             await GoogleSignin.hasPlayServices();
@@ -80,17 +77,6 @@ export function SessionProvider({ children }: PropsWithChildren) {
         signOut: () => {
           GoogleSignin.signOut()
           setSession(null);
-        },
-        refreshSession: () =>
-          GoogleSignin.getTokens()
-            .then(({ idToken }) => {
-              console.log("token refreshed")
-              setSession(idToken)
-            })
-            .catch(() => setSession(null))
-        ,
-        getUser: () => {
-          return GoogleSignin.getCurrentUser()
         },
         session,
         isLoading,
