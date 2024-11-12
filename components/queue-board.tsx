@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { View, Text, Pressable } from 'react-native';
 import { SimpleGrid } from 'react-native-super-grid';
+import { QueueColorList } from './queue-color';
 
 enum QueueStatus {
   EMPTY = "EMPTY",
@@ -41,6 +42,7 @@ interface QueueData {
 }
 
 export const QueueBoard = ({ queues }: { queues: QueueData[] }) => {
+  const [sequence, setSequence] = useState("0")
   return (
     <>
       <SimpleGrid
@@ -51,7 +53,7 @@ export const QueueBoard = ({ queues }: { queues: QueueData[] }) => {
         renderItem={({ item }) => (
           <View className="items-center justify-center">
             <Pressable
-              onPress={() => console.log(`pressed ${item.sequence}`)}
+              onPress={() => setSequence(item.sequence)}
               disabled={item.status == "EMPTY" ? false : true}
               className={`h-14 w-14 items-center justify-center rounded-md ${colorDecission(item.status)}`}>
               <Text className={`${item.status == "EMPTY" ? 'text-slate-300' : 'text-slate-600'}`}>{item.sequence}</Text>
@@ -59,6 +61,9 @@ export const QueueBoard = ({ queues }: { queues: QueueData[] }) => {
           </View>
         )}
       />
+      <View className='mb-10'>
+        <QueueColorList />
+      </View>
     </>
   );
 };

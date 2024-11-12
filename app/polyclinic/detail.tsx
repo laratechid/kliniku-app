@@ -14,8 +14,8 @@ import { socketService } from '~/service/socket.io';
 
 export default function QueueScreen() {
   const { session } = useSession()
-  const { id, clinicName, adress } = useLocalSearchParams<{ 
-    id: string, clinicName: string, adress: string 
+  const { id, clinicName, adress } = useLocalSearchParams<{
+    id: string, clinicName: string, adress: string
   }>();
   const [data, setData] = useState<any>({ id: 0, queues: [] });
 
@@ -51,10 +51,10 @@ export default function QueueScreen() {
                 </View>
               </ImageBackground>}
             />
-            
+
           </View>
           <View className="mt-5">
-            <QueueRegistered />
+            <QueueRegistered totalRegistrant={data.totalRegistrant} userCurrentQueue={24} />
           </View>
           <View className="mx-5 mt-10">
             <Text className="mt-3 text-sm text-slate-700">Live Antrian</Text>

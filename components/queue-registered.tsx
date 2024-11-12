@@ -1,7 +1,7 @@
 import React from 'react';
 import { View, Text } from 'react-native';
 
-export const QueueRegistered = () => {
+export const QueueRegistered = ({ totalRegistrant, userCurrentQueue }: { totalRegistrant: number, userCurrentQueue: number }) => {
   return (
     <>
       <View className="flex flex-row rounded-xl bg-slate-200">
@@ -9,7 +9,7 @@ export const QueueRegistered = () => {
           <View className="flex flex-row">
             <View className="h-24 basis-1/2 items-center justify-center">
               <View className="h-20 w-20 items-center justify-center rounded-xl bg-slate-400">
-                <Text className="text-3xl text-slate-700">30</Text>
+                <Text className="text-3xl text-slate-700">{totalRegistrant}</Text>
               </View>
             </View>
             <View className="h-24 basis-1/2 justify-center">
@@ -22,7 +22,7 @@ export const QueueRegistered = () => {
           <View className="flex flex-row">
             <View className="h-24 basis-1/2 items-center justify-center">
               <View className="h-20 w-20 items-center justify-center rounded-xl bg-slate-400">
-                <Text className="text-3xl text-slate-700">30</Text>
+                <Text className="text-3xl text-slate-700">{userCurrentQueue}</Text>
               </View>
             </View>
             <View className="h-24 basis-1/2 justify-center">
