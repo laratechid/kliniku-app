@@ -44,7 +44,7 @@ export default function QueueScreen() {
               address={adress}
               firstRow={<ImageBackground
                 className="mr-2 h-24 basis-3/12 overflow-hidden rounded-xl bg-gray-200"
-                source={{ uri: "https://dummyimage.com/600x400/4f4f4e/ffffff" }}
+                source={{ uri: `${data.poly?.image}` }}
                 resizeMode="cover">
                 <View className="absolute right-1 top-1 rounded-full bg-gray-300 p-1 px-4">
                   <Text className="text-xs text-gray-600">{data.poly?.name}</Text>

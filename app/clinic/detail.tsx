@@ -77,7 +77,7 @@ export default function ClinicDetailScreen() {
                 <Pressable
                   onPress={() =>
                     router.push({
-                      pathname: '/queue/detail',
+                      pathname: '/polyclinic/detail',
                       params: { id: item.id, clinicName: data.name, adress: data.adress },
                     })
                   }>
