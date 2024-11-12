@@ -6,6 +6,7 @@ import { ClinicProfile } from '~/components/clinic-detail';
 import { Container } from '~/components/container';
 import { useSession } from '~/components/middleware/context';
 import { QueueBoard } from '~/components/queue-board';
+import { QueueColorList } from '~/components/queue-color';
 import { QueueRegistered } from '~/components/queue-registered';
 import { env } from '~/config/env';
 import { polyEvent } from '~/const/event';
@@ -53,12 +54,12 @@ export default function QueueScreen() {
             />
 
           </View>
-          <View className="mt-5">
-            <QueueRegistered totalRegistrant={data.totalRegistrant} userCurrentQueue={24} />
-          </View>
           <View className="mx-5 mt-10">
             <Text className="mt-3 text-sm text-slate-700">Live Antrian</Text>
             <QueueBoard queues={data.queues} />
+          </View>
+          <View className="my-5">
+            <QueueRegistered totalRegistrant={data.totalRegistrant} userCurrentQueue={24} />
           </View>
         </Container>
       </ScrollView>

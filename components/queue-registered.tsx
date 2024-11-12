@@ -8,7 +8,7 @@ export const QueueRegistered = ({ totalRegistrant, userCurrentQueue }: { totalRe
         <View className="basis-1/2">
           <View className="flex flex-row">
             <View className="h-24 basis-1/2 items-center justify-center">
-              <View className="h-20 w-20 items-center justify-center rounded-xl bg-slate-400">
+              <View className="h-16 w-16 items-center justify-center rounded-xl bg-slate-400">
                 <Text className="text-3xl text-slate-700">{totalRegistrant}</Text>
               </View>
             </View>
@@ -21,7 +21,7 @@ export const QueueRegistered = ({ totalRegistrant, userCurrentQueue }: { totalRe
         <View className="basis-1/2">
           <View className="flex flex-row">
             <View className="h-24 basis-1/2 items-center justify-center">
-              <View className="h-20 w-20 items-center justify-center rounded-xl bg-slate-400">
+              <View className="h-16 w-16 items-center justify-center rounded-xl bg-slate-400">
                 <Text className="text-3xl text-slate-700">{userCurrentQueue}</Text>
               </View>
             </View>

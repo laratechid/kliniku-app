@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import { View, Text, Pressable } from 'react-native';
+import Modal from "react-native-modal";
+import { View, Text, Pressable, Button } from 'react-native';
 import { SimpleGrid } from 'react-native-super-grid';
 import { QueueColorList } from './queue-color';
 
@@ -43,6 +44,12 @@ interface QueueData {
 
 export const QueueBoard = ({ queues }: { queues: QueueData[] }) => {
   const [sequence, setSequence] = useState("0")
+  const [isModalVisible, setModalVisible] = useState(false);
+
+  const toggleModal = () => {
+    setModalVisible(!isModalVisible);
+  };
+
   return (
     <>
       <SimpleGrid
@@ -53,7 +60,10 @@ export const QueueBoard = ({ queues }: { queues: QueueData[] }) => {
         renderItem={({ item }) => (
           <View className="items-center justify-center">
             <Pressable
-              onPress={() => setSequence(item.sequence)}
+              onPress={() => {
+                setSequence(item.sequence);
+                setModalVisible(true)
+              }}
               disabled={item.status == "EMPTY" ? false : true}
               className={`h-14 w-14 items-center justify-center rounded-md ${colorDecission(item.status)}`}>
               <Text className={`${item.status == "EMPTY" ? 'text-slate-300' : 'text-slate-600'}`}>{item.sequence}</Text>
@@ -64,6 +74,28 @@ export const QueueBoard = ({ queues }: { queues: QueueData[] }) => {
       <View className='mb-10'>
         <QueueColorList />
       </View>
+
+      <Modal
+        animationIn={"fadeIn"}
+        animationOut={"fadeOut"}
+        isVisible={isModalVisible}
+        onBackButtonPress={()=> setModalVisible(false)}
+        onBackdropPress={() => setModalVisible(false)}
+      >
+        <View>
+          <View className='w-full px-16 py-20 rounded-xl bg-slate-50 justify-center items-center'>
+            <Text className="text-sm text-slate-500 text-center">Apakah anda yakin memilih antrian {sequence}, selalu pantau live antrian untuk estimasi kehadiran anda di klinik</Text>
+            <View className="mt-5 h-20 w-48 items-center justify-center rounded-xl border-2 border-slate-300 ">
+              <Text className="text-3xl text-slate-700">{sequence}</Text>
+            </View>
+            <Pressable
+              className='p-3 m-3 bg-green-500 rounded-xl border border-green-600'
+              onPress={toggleModal}>
+              <Text className='text-slate-100 font-bold'>Booking Antrian</Text>
+            </Pressable>
+          </View>
+        </View>
+      </Modal>
     </>
   );
 };
