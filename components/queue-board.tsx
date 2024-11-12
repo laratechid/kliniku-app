@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
 import Modal from "react-native-modal";
-import { View, Text, Pressable, Button } from 'react-native';
+import { View, Text, Pressable } from 'react-native';
 import { SimpleGrid } from 'react-native-super-grid';
 import { QueueColorList } from './queue-color';
+import { router } from "expo-router"
 
 enum QueueStatus {
   EMPTY = "EMPTY",
@@ -42,13 +43,9 @@ interface QueueData {
   status: string;
 }
 
-export const QueueBoard = ({ queues }: { queues: QueueData[] }) => {
+export const QueueBoard = ({ polyclinicId ,queues }: { polyclinicId : string, queues: QueueData[] }) => {
   const [sequence, setSequence] = useState("0")
   const [isModalVisible, setModalVisible] = useState(false);
-
-  const toggleModal = () => {
-    setModalVisible(!isModalVisible);
-  };
 
   return (
     <>
@@ -90,7 +87,13 @@ export const QueueBoard = ({ queues }: { queues: QueueData[] }) => {
             </View>
             <Pressable
               className='p-3 m-3 bg-green-500 rounded-xl border border-green-600'
-              onPress={toggleModal}>
+              onPress={() =>
+                router.push({
+                  pathname: '/booking/summary',
+                  params: { polyclinicId, sequence},
+                })
+              }
+              >
               <Text className='text-slate-100 font-bold'>Booking Antrian</Text>
             </Pressable>
           </View>
