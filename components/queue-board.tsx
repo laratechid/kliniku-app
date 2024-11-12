@@ -1,8 +1,9 @@
 import React from 'react';
-import { View, Text } from 'react-native';
+import { View, Text, Pressable } from 'react-native';
 import { SimpleGrid } from 'react-native-super-grid';
 
 enum QueueStatus {
+  EMPTY = "EMPTY",
   BOOKED = 'BOOKED',
   SKIPPED = 'SKIPPED',
   ON_GOING = 'ON_GOING',
@@ -10,13 +11,16 @@ enum QueueStatus {
 }
 
 enum QueueColor {
+  EMPTY = "border border-slate-200",
   BOOKED = 'bg-slate-300',
-  SKIPPED = 'bg-slate-200',
-  ON_GOING = 'bg-green-500',
-  COMPLETED = 'bg-yellow-500',
+  SKIPPED = 'bg-slate-100 border border-slate-200',
+  ON_GOING = 'bg-amber-400 border border-green-400 h-16 w-16',
+  COMPLETED = 'bg-green-400',
 }
 const colorDecission = (status: string) => {
   switch (status) {
+    case QueueStatus.EMPTY:
+      return QueueColor.EMPTY;
     case QueueStatus.BOOKED:
       return QueueColor.BOOKED;
     case QueueStatus.SKIPPED:
@@ -46,10 +50,12 @@ export const QueueBoard = ({ queues }: { queues: QueueData[] }) => {
         itemDimension={40}
         renderItem={({ item }) => (
           <View className="items-center justify-center">
-            <View
-              className={`h-14 w-14 items-center justify-center rounded-md bg-slate-400 ${colorDecission(item.status)}`}>
-              <Text className="text-slate-700">{item.sequence}</Text>
-            </View>
+            <Pressable
+              onPress={()=> console.log(`pressed ${item.sequence}`)}
+              disabled={false}
+              className={`h-14 w-14 items-center justify-center rounded-md ${colorDecission(item.status)}`}>
+              <Text className="text-slate-600">{item.sequence}</Text>
+            </Pressable>
           </View>
         )}
       />
