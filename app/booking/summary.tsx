@@ -1,6 +1,7 @@
 import { useLocalSearchParams } from "expo-router";
 import React, { useEffect, useState } from "react";
 import { ImageBackground, Pressable, Text, View } from "react-native"
+import Modal from "react-native-modal";
 import { Container } from "~/components/container";
 import { useSession } from "~/components/middleware/context";
 import { env } from "~/config/env";
@@ -9,13 +10,14 @@ import { Response } from "~/interface/response";
 
 export default function BookingSummary() {
     const { session } = useSession()
+    const [isModalVisible, setModalVisible] = useState(false);
     const { polyclinicId, sequence } = useLocalSearchParams()
     const [{ message: data }, setData] = useState<Response>({
         statusCode: 200,
         message: {},
-      })
+    })
 
-    const fetchData = async () =>{
+    const fetchData = async () => {
         const data = await request({
             uri: env.klinikuApiUrl + `/book/summary?sequence=${sequence}&polyclinicId=${polyclinicId}`,
             method: "GET",
@@ -25,9 +27,9 @@ export default function BookingSummary() {
         setData(response);
     }
 
-    useEffect(()=>{
+    useEffect(() => {
         fetchData()
-    },[])
+    }, [])
 
     return (
         <Container>
@@ -35,7 +37,7 @@ export default function BookingSummary() {
                 <Text className="text-2xl">Checkout Payment</Text>
             </View>
 
-            <View className="mt-10 rounded-lg bg-slate-300">
+            <View className="mt-10 rounded-xl bg-slate-300">
                 <View className="flex flex-row">
                     <View className="basis-4/12 items-center justify-center">
                         <ImageBackground
@@ -122,9 +124,32 @@ export default function BookingSummary() {
                 </View>
             </View>
 
-            <Pressable className="mt-10 w-full bg-sky-500 items-center rounded-lg">
+            <Pressable
+                className="mt-10 w-full bg-sky-500 items-center rounded-lg"
+                onPress={() => setModalVisible(true)}
+            >
                 <Text className="text-white font-bold m-3">Lanjut Bayar</Text>
             </Pressable>
+
+            <Modal
+                animationIn={"fadeIn"}
+                animationOut={"fadeOut"}
+                isVisible={isModalVisible}
+                onBackButtonPress={() => setModalVisible(false)}
+                onBackdropPress={() => setModalVisible(false)}
+            >
+                <View>
+                    <View className='w-full px-16 py-20 rounded-xl bg-slate-50 justify-center items-center'>
+                        <Text className="text text-slate-500 text-center">Lanjut Ke Pembayaran, anda akan di arahkan ke page pembayaran</Text>
+                        <Pressable
+                            className="mt-10 w-full bg-sky-500 items-center rounded-lg"
+                            onPress={() => console.log("=========> redirect deeplink")}
+                        >
+                            <Text className="text-white font-bold m-3">Bayar</Text>
+                        </Pressable>
+                    </View>
+                </View>
+            </Modal>
 
         </Container>
     )
