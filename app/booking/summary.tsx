@@ -138,8 +138,8 @@ export default function BookingSummary() {
                 onBackButtonPress={() => setModalVisible(false)}
                 onBackdropPress={() => setModalVisible(false)}
             >
-                <View>
-                    <View className='w-full px-16 py-20 rounded-xl bg-slate-50 justify-center items-center'>
+                <View className="flex-1 justify-end">
+                    <View className='px-16 py-20 rounded-xl bg-slate-50 justify-center items-center'>
                         <Text className="text text-slate-500 text-center">Lanjut Ke Pembayaran, anda akan di arahkan ke page pembayaran</Text>
                         <Pressable
                             className="mt-10 w-full bg-sky-500 items-center rounded-lg"

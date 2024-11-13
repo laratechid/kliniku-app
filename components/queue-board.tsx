@@ -79,8 +79,8 @@ export const QueueBoard = ({ polyclinicId ,queues }: { polyclinicId : string, qu
         onBackButtonPress={()=> setModalVisible(false)}
         onBackdropPress={() => setModalVisible(false)}
       >
-        <View>
-          <View className='w-full px-16 py-20 rounded-xl bg-slate-50 justify-center items-center'>
+        <View className='flex-1 justify-end'>
+          <View className='px-16 py-20 rounded-xl bg-slate-50 justify-center items-center'>
             <Text className="text-sm text-slate-500 text-center">Apakah anda yakin memilih antrian {sequence}, selalu pantau live antrian untuk estimasi kehadiran anda di klinik</Text>
             <View className="mt-5 h-20 w-48 items-center justify-center rounded-xl border-2 border-slate-300 ">
               <Text className="text-3xl text-slate-700">{sequence}</Text>
