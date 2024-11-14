@@ -43,7 +43,7 @@ interface QueueData {
   status: string;
 }
 
-export const QueueBoard = ({ polyclinicId ,queues }: { polyclinicId : string, queues: QueueData[] }) => {
+export const QueueBoard = ({ polyClinicId ,queues }: { polyClinicId : string, queues: QueueData[] }) => {
   const [sequence, setSequence] = useState("0")
   const [isModalVisible, setModalVisible] = useState(false);
 
@@ -90,7 +90,7 @@ export const QueueBoard = ({ polyclinicId ,queues }: { polyclinicId : string, qu
               onPress={() =>
                 router.push({
                   pathname: '/booking/summary',
-                  params: { polyclinicId, sequence},
+                  params: { polyClinicId, sequence},
                 })
               }
               >

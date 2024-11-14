@@ -11,7 +11,7 @@ import { Response } from "~/interface/response";
 export default function BookingSummary() {
     const { session } = useSession()
     const [isModalVisible, setModalVisible] = useState(false);
-    const { polyclinicId, sequence } = useLocalSearchParams()
+    const { polyClinicId, sequence } = useLocalSearchParams()
     const [{ message: data }, setData] = useState<Response>({
         statusCode: 200,
         message: {},
@@ -19,7 +19,7 @@ export default function BookingSummary() {
 
     const fetchData = async () => {
         const data = await request({
-            uri: env.klinikuApiUrl + `/book/summary?sequence=${sequence}&polyClinicId=${polyclinicId}`,
+            uri: env.klinikuApiUrl + `/book/summary?sequence=${sequence}&polyClinicId=${polyClinicId}`,
             method: "GET",
             token: session as string
         })
@@ -32,7 +32,7 @@ export default function BookingSummary() {
             uri: env.klinikuApiUrl + "/book/queue",
             method: "POST",
             token: session as string,
-            body: { polyClinicId: polyclinicId, sequence }
+            body: { polyClinicId, sequence }
         })
     }
 

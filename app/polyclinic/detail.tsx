@@ -55,7 +55,7 @@ export default function QueueScreen() {
           </View>
           <View className="mx-5 mt-10">
             <Text className="mt-3 text-sm text-slate-700">Live Antrian</Text>
-            <QueueBoard polyclinicId={id} queues={data.queues} />
+            <QueueBoard polyClinicId={id} queues={data.queues} />
           </View>
           <View className="my-5">
             <QueueRegistered totalRegistrant={data.totalRegistrant} userCurrentQueue={24} />
