@@ -41,7 +41,7 @@ export default function BookingSummary() {
     }, [])
 
     return (
-        <Container>
+        <Container className="p-6">
             <View className="mt-24">
                 <Text className="text-2xl">Checkout Payment</Text>
             </View>

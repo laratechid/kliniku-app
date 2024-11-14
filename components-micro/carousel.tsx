@@ -13,7 +13,7 @@ export const ImageCarousel = ({ images }: { images: string[] }) => {
         height={width / 2}
         autoPlay
         data={images}
-        scrollAnimationDuration={2000}
+        scrollAnimationDuration={10000}
         renderItem={({ index, item }) => (
           <View key={index} style={styles.imageContainer}>
             <Image source={{ uri: item }} style={styles.image} resizeMode="cover" />
@@ -30,12 +30,12 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    marginVertical: 5,
+    marginVertical: 1,
   },
   imageContainer: {
     flex: 1,
     justifyContent: 'center',
-    marginHorizontal: 5,
+    marginHorizontal: 1,
   },
   image: {
     width: '100%',

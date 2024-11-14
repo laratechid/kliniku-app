@@ -44,16 +44,16 @@ export default function Home() {
     <>
       <Stack.Screen options={{ title: 'Home', headerShown: false }} />
       <ScrollView>
-        <Container>
+        <Container className='p-6'>
           <View className="mt-10">
             <MainSearch />
           </View>
-          <View className="mx-5 mt-8">
+          <View className="mx-3 mt-8">
             <MainMenu />
           </View>
           <View>
-          <Button title='Get User' onPress={() => console.log(session, "token")} />
-            <Button title='Logout' onPress={() => signOut()} />
+          {/* <Button title='Get User' onPress={() => console.log(session, "token")} />
+            <Button title='Logout' onPress={() => signOut()} /> */}
             <PressableSection
               title="Klinik Sekitarmu"
               href={{ pathname: '/clinic/list', params: { name: 'Hai' } }}
@@ -69,8 +69,8 @@ export default function Home() {
                     params: { id: item.id },
                   })
                 }
-                className="my-1 rounded-xl bg-slate-300">
-                <View className="flex flex-row flex-wrap p-2">
+                className="my-1 rounded-xl bg-slate-50 shadow border border-slate-200">
+                <View className="flex flex-row p-2">
                   <View className="basis-1/3">
                     <Image
                       source={{ uri: item.images[0] }}
@@ -87,7 +87,7 @@ export default function Home() {
                         spacing={0}
                         itemDimension={70}
                         renderItem={({ item }) => (
-                          <View className="m-[1px] rounded-full bg-slate-400 px-2">
+                          <View className="m-[1px] rounded-full bg-amber-500 px-2">
                             <Text className="text-xs text-slate-100">{item}</Text>
                           </View>
                         )}

@@ -41,7 +41,7 @@ export default function ClinicDetailScreen() {
     <>
       <Stack.Screen options={{ title: 'ClinicList', headerShown: false }} />
       <ScrollView>
-        <Container className="mt-10">
+        <Container className="mt-10 p-6">
           <View className="mt-10 rounded-xl bg-slate-200 p-4">
 
             <ClinicProfile
