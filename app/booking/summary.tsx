@@ -19,12 +19,21 @@ export default function BookingSummary() {
 
     const fetchData = async () => {
         const data = await request({
-            uri: env.klinikuApiUrl + `/book/summary?sequence=${sequence}&polyclinicId=${polyclinicId}`,
+            uri: env.klinikuApiUrl + `/book/summary?sequence=${sequence}&polyClinicId=${polyclinicId}`,
             method: "GET",
             token: session as string
         })
         const response: Response = data
         setData(response);
+    }
+
+    const bookQueue = async () => {
+        const data = await request({
+            uri: env.klinikuApiUrl + "/book/queue",
+            method: "POST",
+            token: session as string,
+            body: { polyClinicId: polyclinicId, sequence }
+        })
     }
 
     useEffect(() => {
@@ -143,7 +152,7 @@ export default function BookingSummary() {
                         <Text className="text text-slate-500 text-center">Lanjut Ke Pembayaran, anda akan di arahkan ke page pembayaran</Text>
                         <Pressable
                             className="mt-10 w-full bg-sky-500 items-center rounded-lg"
-                            onPress={() => console.log("=========> redirect deeplink")}
+                            onPress={async () => await bookQueue()}
                         >
                             <Text className="text-white font-bold m-3">Bayar</Text>
                         </Pressable>
