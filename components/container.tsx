@@ -10,7 +10,7 @@ export const Container = ({
   return(
     <ImageBackground
     className={`fixed h-[30%]`}
-    source={require('../assets/app/background-5.png')}
+    source={require('../assets/app/background.png')}
     resizeMode="stretch"
     >
       <SafeAreaView className={`flex flex-1 ${className}`}>{children}</SafeAreaView>
