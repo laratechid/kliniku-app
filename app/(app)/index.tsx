@@ -52,8 +52,8 @@ export default function Home() {
             <MainMenu />
           </View>
           <View>
-          {/* <Button title='Get User' onPress={() => console.log(session, "token")} />
-            <Button title='Logout' onPress={() => signOut()} /> */}
+          <Button title='Get User' onPress={() => console.log(session, "token")} />
+            <Button title='Logout' onPress={() => signOut()} />
             <PressableSection
               title="Klinik Sekitarmu"
               href={{ pathname: '/clinic/list', params: { name: 'Hai' } }}
