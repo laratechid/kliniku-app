@@ -37,7 +37,7 @@ export default function QueueScreen() {
       <Stack.Screen options={{ title: 'QueueDetail', headerShown: false }} />
       <ScrollView>
         <Container className="mt-10 p-6">
-          <View className="mt-10 rounded-xl bg-slate-200 p-4">
+          <View className="mt-10 rounded-xl bg-slate-50 p-4 border border-slate-200">
 
             <ClinicProfile
               name={clinicName}

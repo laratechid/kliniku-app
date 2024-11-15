@@ -28,12 +28,13 @@ export default function BookingSummary() {
     }
 
     const bookQueue = async () => {
-        const data = await request({
+        await request({
             uri: env.klinikuApiUrl + "/book/queue",
             method: "POST",
             token: session as string,
             body: { polyClinicId, sequence }
         })
+        setModalVisible(false)
     }
 
     useEffect(() => {
@@ -41,7 +42,7 @@ export default function BookingSummary() {
     }, [])
 
     return (
-        <Container className="p-6">
+        <Container className="p-6 h-screen">
             <View className="mt-24">
                 <Text className="text-2xl">Checkout Payment</Text>
             </View>

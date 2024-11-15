@@ -8,7 +8,7 @@ export const MainSearch = () => {
   return (
     <>
       <View className="rounded-xl pt-10">
-        <View className="flex flex-row items-center bg-gray-200 rounded-xl">
+        <View className="flex flex-row items-center bg-slate-50 rounded-xl">
           <View className="basis-5/6 mx-2">
             <TextInput
               className="my-3 px-5 py-1 rounded-xl border border-indigo-300 text-gray-500 placeholder:text-gray-300 focus:border-indigo-500 focus:shadow focus:shadow-slate-200 focus:outline-indigo-500"

@@ -70,7 +70,7 @@ export default function Home() {
                   })
                 }
                 className="my-1 rounded-xl bg-slate-50 shadow border border-slate-200">
-                <View className="flex flex-row p-2">
+                <View className="flex flex-row p-2 border border-indigo-100 shadow shadow-slate-200 rounded-xl ">
                   <View className="basis-1/3">
                     <Image
                       source={{ uri: item.images[0] }}
@@ -87,7 +87,7 @@ export default function Home() {
                         spacing={0}
                         itemDimension={70}
                         renderItem={({ item }) => (
-                          <View className="m-[1px] rounded-full bg-indigo-300 px-2">
+                          <View className="m-[1px] rounded-full bg-yellow-500 px-2">
                             <Text className="text-xs text-slate-50">{item}</Text>
                           </View>
                         )}
