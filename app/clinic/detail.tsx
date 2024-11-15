@@ -42,19 +42,19 @@ export default function ClinicDetailScreen() {
       <Stack.Screen options={{ title: 'ClinicList', headerShown: false }} />
       <ScrollView>
         <Container className="mt-10 p-6">
-          <View className="mt-10 rounded-xl bg-slate-200 p-4">
+          <View className="mt-10 rounded-xl bg-slate-50 p-4 border border-slate-200">
 
             <ClinicProfile
               name={data.name}
               address={data.adress}
               schedules={data.schedules}
               firstRow={
-                <View className="mr-2 h-24 basis-3/12 overflow-hidden rounded-xl justify-center items-center border border-slate-300">
+                <View className="mr-2 h-24 basis-3/12 overflow-hidden rounded-xl justify-center items-center border border-indigo-300">
                   <View className="flex flex-row flex-wrap">
                     <Text className="ms-1 mt-1 text-sm text-slate-500">Rating</Text>
                   </View>
                   <View className="flex flex-row flex-wrap items-center">
-                    <FontAwesomeIcon icon={faStar} size={15} color="gray" />
+                    <FontAwesomeIcon icon={faStar} size={15} color="orange" />
                     <Text className="ms-1 mt-1 text-slate-500">{data.rating}</Text>
                   </View>
                 </View>

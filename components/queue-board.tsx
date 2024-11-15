@@ -86,7 +86,7 @@ export const QueueBoard = ({ polyClinicId ,queues }: { polyClinicId : string, qu
               <Text className="text-3xl text-slate-700">{sequence}</Text>
             </View>
             <Pressable
-              className='p-3 m-3 bg-green-500 rounded-xl border border-green-600'
+              className='p-3 m-3 bg-indigo-400 rounded-xl border border-indigo-400 shadow shadow-slate-700'
               onPress={() =>
                 router.push({
                   pathname: '/booking/summary',

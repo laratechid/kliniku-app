@@ -87,8 +87,8 @@ export default function Home() {
                         spacing={0}
                         itemDimension={70}
                         renderItem={({ item }) => (
-                          <View className="m-[1px] rounded-full bg-amber-500 px-2">
-                            <Text className="text-xs text-slate-100">{item}</Text>
+                          <View className="m-[1px] rounded-full bg-indigo-300 px-2">
+                            <Text className="text-xs text-slate-50">{item}</Text>
                           </View>
                         )}
                       />

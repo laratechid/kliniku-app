@@ -134,7 +134,7 @@ export default function BookingSummary() {
             </View>
 
             <Pressable
-                className="mt-10 w-full bg-sky-500 items-center rounded-lg"
+                className="mt-10 w-full items-center bg-indigo-400 rounded-xl border border-indigo-400 shadow shadow-slate-700"
                 onPress={() => setModalVisible(true)}
             >
                 <Text className="text-white font-bold m-3">Lanjut Bayar</Text>
@@ -151,7 +151,7 @@ export default function BookingSummary() {
                     <View className='px-16 py-20 rounded-xl bg-slate-50 justify-center items-center'>
                         <Text className="text text-slate-500 text-center">Lanjut Ke Pembayaran, anda akan di arahkan ke page pembayaran</Text>
                         <Pressable
-                            className="mt-10 w-full bg-sky-500 items-center rounded-lg"
+                            className="mt-10 w-full items-center bg-indigo-400 rounded-xl border border-indigo-400 shadow shadow-slate-700"
                             onPress={async () => await bookQueue()}
                         >
                             <Text className="text-white font-bold m-3">Bayar</Text>
