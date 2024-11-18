@@ -16,7 +16,7 @@ enum QueueStatus {
 enum QueueColor {
   EMPTY = "border border-slate-300",
   BOOKED = 'bg-indigo-100',
-  SKIPPED = 'border border-indigo-200',
+  SKIPPED = 'bg-indigo-100 border-2 border-indigo-400',
   ON_GOING = 'bg-emerald-500 shadow shadow-xl shadow-emerald-900 border border-white',
   COMPLETED = 'bg-cyan-600',
 }
