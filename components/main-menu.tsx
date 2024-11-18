@@ -13,8 +13,8 @@ export const MainMenu = () => {
           data={mainMenu}
           itemDimension={60}
           renderItem={({ item }) => (
-            <View className="items-center">
-              <Image source={require('../assets/favicon.png')} style={{ width: 30, height: 30 }} />
+            <View className="items-center m-2">
+              <Image source={require('../assets/favicon.png')} style={{ width: 40, height: 40 }} />
               <Text className="text-xs text-slate-500">{item}</Text>
             </View>
           )}
