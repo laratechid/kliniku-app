@@ -62,7 +62,7 @@ export default function BookingSummary() {
                     <View className="flex-auto bg-indigo-200 justify-center">
                         <View className="mx-4">
                             <Text className="text-slate-600 text-xl font-bold border-b border-slate-400">{data.clinic?.name}</Text>
-                            <Text className="text-slate-500 text-xs">{data.clinic?.adress}</Text>
+                            <Text className="text-slate-500 text-xs mt-2">{data.clinic?.adress}</Text>
                         </View>
                     </View>
                 </View>
