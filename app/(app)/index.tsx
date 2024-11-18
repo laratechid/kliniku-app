@@ -43,7 +43,7 @@ export default function Home() {
   return (
     <>
       <Stack.Screen options={{ title: 'Home', headerShown: false }} />
-      <ScrollView>
+      <ScrollView className='bg-white'>
         <Container className='p-6'>
           <View className="mt-10">
             <MainSearch />
@@ -52,8 +52,8 @@ export default function Home() {
             <MainMenu />
           </View>
           <View>
-          <Button title='Get User' onPress={() => console.log(session, "token")} />
-            <Button title='Logout' onPress={() => signOut()} />
+          {/* <Button title='Get User' onPress={() => console.log(session, "token")} />
+            <Button title='Logout' onPress={() => signOut()} /> */}
             <PressableSection
               title="Klinik Sekitarmu"
               href={{ pathname: '/clinic/list', params: { name: 'Hai' } }}
@@ -69,8 +69,8 @@ export default function Home() {
                     params: { id: item.id },
                   })
                 }
-                className="my-1 rounded-xl bg-slate-50 shadow border border-slate-200">
-                <View className="flex flex-row p-2 border border-indigo-100 shadow shadow-slate-200 rounded-xl ">
+                className="my-1 rounded-xl bg-indigo-50 shadow border border-indigo-100">
+                <View className="flex flex-row p-2 border border-indigo-50 rounded-xl">
                   <View className="basis-1/3">
                     <Image
                       source={{ uri: item.images[0] }}

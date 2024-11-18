@@ -14,8 +14,8 @@ import { socketService } from '~/service/socket.io';
 
 export default function QueueScreen() {
   const { session } = useSession()
-  const { id, clinicName, adress } = useLocalSearchParams<{
-    id: string, clinicName: string, adress: string
+  const { id, clinicName, adress, imageProfile } = useLocalSearchParams<{
+    id: string, clinicName: string, adress: string, imageProfile: string
   }>();
   const [data, setData] = useState<any>({ id: 0, queues: [] });
 
@@ -42,6 +42,7 @@ export default function QueueScreen() {
             <ClinicProfile
               name={clinicName}
               address={adress}
+              imageProfile={imageProfile}
               firstRow={<ImageBackground
                 className="mr-2 h-24 basis-3/12 overflow-hidden rounded-xl bg-gray-200"
                 source={{ uri: `${data.poly?.image}` }}
