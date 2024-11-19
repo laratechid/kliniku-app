@@ -8,11 +8,11 @@ export const ClinicSchedules = ({data}: { data: any[] }) => {
             {data.map((res) => (
                 <View className='flex-row'>
 
-                    <View className={`rounded m-1 w-28 ${res.isToday ? 'bg-yellow-500': 'bg-slate-300'}`}>
-                        <Text className='p-1 mx-2 text-md text-slate-700'>{res.day}</Text>
+                    <View className={`rounded m-1 w-28 ${res.isToday ? 'bg-yellow-500': 'bg-indigo-100'}`}>
+                        <Text className='p-1 mx-2 text-xs text-slate-700'>{res.day}</Text>
                     </View>
-                    <View className={`rounded m-1 w-48 ${res.isToday ? 'bg-yellow-500': 'bg-slate-300'}`}>
-                        <Text className='p-1 mx-2 text-center text-slate-700'>{`${res.startTime} - ${res.endTime}`}</Text>
+                    <View className={`rounded m-1 w-48 ${res.isToday ? 'bg-yellow-500': 'bg-indigo-100'}`}>
+                        <Text className='p-1 mx-2 text-xs text-center text-slate-700'>{`${res.startTime} - ${res.endTime}`}</Text>
                     </View>
 
                 </View>

@@ -2,12 +2,12 @@ import React from 'react';
 import { View, Text } from 'react-native';
 
 enum QueueColor {
-    EMPTY = "border border-slate-300",
-    BOOKED = 'bg-slate-300',
-    SKIPPED = 'bg-slate-100',
-    ON_GOING = 'bg-amber-400',
-    COMPLETED = 'bg-green-400',
-  }
+      EMPTY = "border border-slate-300",
+      BOOKED = 'bg-indigo-100',
+      SKIPPED = 'border border-indigo-200',
+      ON_GOING = 'bg-emerald-500',
+      COMPLETED = 'bg-cyan-600',
+    }
 
 export const QueueColorList = () => {
   return (
@@ -24,10 +24,10 @@ export const QueueColorList = () => {
             <View className={`h-3 w-10 mx-5 rounded-lg ${QueueColor.EMPTY}`}></View>
             <Text className='text-xs text-slate-600'>Antrian Kosong</Text>
       </View>
-      <View className="flex flex-row items-center">
+      {/* <View className="flex flex-row items-center">
             <View className={`h-3 w-10 mx-5 rounded-lg ${QueueColor.SKIPPED}`}></View>
             <Text className='text-xs text-slate-600'>Dilewati</Text>
-      </View>
+      </View> */}
       <View className="flex flex-row items-center">
             <View className={`h-3 w-10 mx-5 rounded-lg ${QueueColor.COMPLETED}`}></View>
             <Text className='text-xs text-slate-600'>Selesai</Text>

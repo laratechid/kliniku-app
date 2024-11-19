@@ -28,12 +28,13 @@ export default function BookingSummary() {
     }
 
     const bookQueue = async () => {
-        const data = await request({
+        await request({
             uri: env.klinikuApiUrl + "/book/queue",
             method: "POST",
             token: session as string,
             body: { polyClinicId, sequence }
         })
+        setModalVisible(false)
     }
 
     useEffect(() => {
@@ -41,12 +42,12 @@ export default function BookingSummary() {
     }, [])
 
     return (
-        <Container>
+        <Container className="p-6 h-screen">
             <View className="mt-24">
-                <Text className="text-2xl">Checkout Payment</Text>
+                <Text className="text-2xl text-white font-bold">Checkout Payment</Text>
             </View>
 
-            <View className="mt-10 rounded-xl bg-slate-300">
+            <View className="mt-10 rounded-xl bg-indigo-300">
                 <View className="flex flex-row">
                     <View className="basis-4/12 items-center justify-center">
                         <ImageBackground
@@ -58,10 +59,10 @@ export default function BookingSummary() {
                             </View>
                         </ImageBackground>
                     </View>
-                    <View className="flex-auto bg-slate-200 justify-center">
+                    <View className="flex-auto bg-indigo-200 justify-center">
                         <View className="mx-4">
-                            <Text className="text-xl border-b border-slate-400">{data.clinic?.name}</Text>
-                            <Text className="text-sm">{data.clinic?.adress}</Text>
+                            <Text className="text-slate-600 text-xl font-bold border-b border-slate-400">{data.clinic?.name}</Text>
+                            <Text className="text-slate-500 text-xs mt-2">{data.clinic?.adress}</Text>
                         </View>
                     </View>
                 </View>
@@ -70,21 +71,10 @@ export default function BookingSummary() {
             <View className="mt-7 rounded-lg">
                 <View className="flex flex-row">
                     <View className="basis-4/12 justify-center">
-                        <Text className="ms-5">Poly</Text>
+                        <Text className="text-slate-500 ms-5">Poli</Text>
                     </View>
-                    <View className="flex-auto justify-center bg-slate-300 rounded-xl">
-                        <Text className="m-7">{data.poly?.name}</Text>
-                    </View>
-                </View>
-            </View>
-
-            <View className="mt-5 rounded-lg">
-                <View className="flex flex-row">
-                    <View className="basis-4/12 justify-center">
-                        <Text className="ms-5">Nama Anda</Text>
-                    </View>
-                    <View className="flex-auto justify-center bg-slate-300 rounded-xl">
-                        <Text className="m-7">Sholeh Bakti Abadi</Text>
+                    <View className="flex-auto justify-center bg-indigo-50 rounded-xl">
+                        <Text className="text-slate-500 m-7">{data.poly?.name}</Text>
                     </View>
                 </View>
             </View>
@@ -92,10 +82,21 @@ export default function BookingSummary() {
             <View className="mt-5 rounded-lg">
                 <View className="flex flex-row">
                     <View className="basis-4/12 justify-center">
-                        <Text className="ms-5">Antrian</Text>
+                        <Text className="text-slate-500 ms-5">Nama Anda</Text>
                     </View>
-                    <View className="flex-auto justify-center bg-slate-300 rounded-xl">
-                        <Text className="m-7">{sequence}</Text>
+                    <View className="flex-auto justify-center bg-indigo-50 rounded-xl">
+                        <Text className="text-slate-500 m-7">Sholeh Bakti Abadi</Text>
+                    </View>
+                </View>
+            </View>
+
+            <View className="mt-5 rounded-lg">
+                <View className="flex flex-row">
+                    <View className="basis-4/12 justify-center">
+                        <Text className="text-slate-500 ms-5">Antrian</Text>
+                    </View>
+                    <View className="flex-auto justify-center bg-indigo-50 rounded-xl">
+                        <Text className="text-slate-500 m-7">{sequence}</Text>
                     </View>
                 </View>
             </View>
@@ -103,19 +104,19 @@ export default function BookingSummary() {
             <View className="mt-20 rounded-lg">
                 <View className="flex flex-row">
                     <View className="basis-5/12 justify-center">
-                        <Text className="ms-5 text-sm text-slate-700">Biaya Pendaftaran</Text>
+                        <Text className="ms-5 text-sm text-slate-500">Biaya Pendaftaran</Text>
                     </View>
                     <View className="flex-auto justify-center rounded-xl">
-                        <Text className="text-sm text-slate-700">Rp {data.bookingFee}</Text>
+                        <Text className="text-sm text-slate-500">Rp {data.bookingFee}</Text>
                     </View>
                 </View>
 
                 <View className="flex flex-row">
                     <View className="basis-5/12 justify-center">
-                        <Text className="ms-5 text-sm text-slate-700">Biaya Platform</Text>
+                        <Text className="ms-5 text-sm text-slate-500">Biaya Platform</Text>
                     </View>
                     <View className="flex-auto justify-center rounded-xl">
-                        <Text className="text-sm text-slate-700">Rp {data.platformFee}</Text>
+                        <Text className="text-sm text-slate-500">Rp {data.platformFee}</Text>
                     </View>
                 </View>
             </View>
@@ -125,16 +126,16 @@ export default function BookingSummary() {
             <View className="rounded-lg">
                 <View className="flex flex-row">
                     <View className="basis-5/12 justify-center">
-                        <Text className="ms-5 text-sm">Total</Text>
+                        <Text className="ms-5 text-sm font-bold text-slate-500">Total</Text>
                     </View>
                     <View className="flex-auto justify-center rounded-xl">
-                        <Text className="text-sm">Rp {data.grandTotal}</Text>
+                        <Text className="text-sm font-bold text-slate-500">Rp {data.grandTotal}</Text>
                     </View>
                 </View>
             </View>
 
             <Pressable
-                className="mt-10 w-full bg-sky-500 items-center rounded-lg"
+                className="mt-10 w-full items-center bg-indigo-400 rounded-xl border border-indigo-400 shadow shadow-slate-700"
                 onPress={() => setModalVisible(true)}
             >
                 <Text className="text-white font-bold m-3">Lanjut Bayar</Text>
@@ -151,7 +152,7 @@ export default function BookingSummary() {
                     <View className='px-16 py-20 rounded-xl bg-slate-50 justify-center items-center'>
                         <Text className="text text-slate-500 text-center">Lanjut Ke Pembayaran, anda akan di arahkan ke page pembayaran</Text>
                         <Pressable
-                            className="mt-10 w-full bg-sky-500 items-center rounded-lg"
+                            className="mt-10 w-full items-center bg-indigo-400 rounded-xl border border-indigo-400 shadow shadow-slate-700"
                             onPress={async () => await bookQueue()}
                         >
                             <Text className="text-white font-bold m-3">Bayar</Text>

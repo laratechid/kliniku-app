@@ -1,4 +1,4 @@
-import { SafeAreaView } from 'react-native';
+import { ImageBackground, SafeAreaView } from 'react-native';
 
 export const Container = ({
   children,
@@ -7,7 +7,15 @@ export const Container = ({
   children: React.ReactNode;
   className?: string;
 }) => {
-  return <SafeAreaView className={`m-6 flex flex-1  ${className}`}>{children}</SafeAreaView>;
+  return(
+    <ImageBackground
+    className={`fixed h-[30%]`}
+    source={require('../assets/app/background.png')}
+    resizeMode="stretch"
+    >
+      <SafeAreaView className={`flex flex-1 ${className}`}>{children}</SafeAreaView>
+    </ImageBackground>
+  )
 };
 
 export const ContainerFull = ({
