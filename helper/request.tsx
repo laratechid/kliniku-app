@@ -8,6 +8,7 @@ interface RequestInterface {
 export const request = async (r: RequestInterface) => {
     let headers: HeadersInit = {}
     let body : any
+    headers = { 'Content-Type': 'application/json' }
     if (r.token) headers = { 'Authorization': `Bearer ${r.token}`, 'Content-Type': 'application/json' }
     if (r.body) body = JSON.stringify(r.body)
     const req = await fetch(r.uri, { method: r.method ?? 'GET', headers: headers, body: body })

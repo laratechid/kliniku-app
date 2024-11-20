@@ -15,7 +15,7 @@ import { useSession } from '~/components/middleware/context';
 import { request } from '~/helper/request';
 
 export default function Home() {
-  const { signOut, session } = useSession()
+  const { signOut, session, refreshToken } = useSession()
   const [data, setData] = useState<ResponsePaginate>({
     statusCode: 200,
     message: [],
@@ -52,8 +52,9 @@ export default function Home() {
             <MainMenu />
           </View>
           <View>
-          {/* <Button title='Get User' onPress={() => console.log(session, "token")} />
-            <Button title='Logout' onPress={() => signOut()} /> */}
+          <Button title='Get refresh token' onPress={() => console.log(refreshToken, "refreshToken")} />
+          <Button title='Get token' onPress={() => console.log(session, "token")} />
+            {/* <Button title='Logout' onPress={() => signOut()} /> */}
             <PressableSection
               title="Klinik Sekitarmu"
               href={{ pathname: '/clinic/list', params: { name: 'Hai' } }}

@@ -1,18 +1,26 @@
 import { useContext, createContext, type PropsWithChildren } from 'react';
 import { useStorageState } from './auth-storage';
-import { GoogleSignin, isSuccessResponse, isErrorWithCode, statusCodes, User } from '@react-native-google-signin/google-signin';
+import { GoogleSignin, isSuccessResponse, isErrorWithCode, statusCodes } from '@react-native-google-signin/google-signin';
 import { router } from 'expo-router';
 import { env } from '~/config/env';
+import { request } from '~/helper/request';
+import { Response } from '~/interface/response';
 
 const AuthContext = createContext<{
-  signIn: () => void;
+  updateSession: (token: string) => void;
+  updateRefreshToken: (token: string) => void;
+  googleSignIn: () => void;
   signOut: () => void;
   session?: string | null;
+  refreshToken?: string | null;
   isLoading: boolean;
 }>({
-  signIn: () => null,
+  updateSession: () => null,
+  updateRefreshToken: () => null,
+  googleSignIn: () => null,
   signOut: () => null,
   session: null,
+  refreshToken: null,
   isLoading: false,
 });
 
@@ -30,17 +38,19 @@ export function useSession() {
 
 export function SessionProvider({ children }: PropsWithChildren) {
   const [[isLoading, session], setSession] = useStorageState('session');
+  const [[_, refreshToken], setRefreshToken] = useStorageState('refreshToken');
 
   return (
     <AuthContext.Provider
       value={{
-        signIn: async () => {
+        updateSession: (token) => {
+          setSession(token)
+        },
+        updateRefreshToken: (token) => {
+          setRefreshToken(token)
+        },
+        googleSignIn: async () => {
           GoogleSignin.configure({
-            // scopes: [
-            //   "https://www.googleapis.com/auth/userinfo.email",
-            //   "https://www.googleapis.com/auth/userinfo.profile"
-            // ],
-            // offlineAccess: true,
             webClientId: env.googleOauthWebClientId
           });
           try {
@@ -48,8 +58,17 @@ export function SessionProvider({ children }: PropsWithChildren) {
             const response = await GoogleSignin.signIn();
             if (isSuccessResponse(response)) {
               // success login
-              const { idToken } = response.data
-              setSession(idToken);
+              const { idToken } = response.data              
+              const data: Response = await request({
+                uri: env.klinikuApiUrl + "/auth/google/register",
+                method: "POST",
+                body: { idToken }
+              })
+              if (data.statusCode == 200){
+                setSession(data.message.token);
+                setRefreshToken(data.message.refreshToken);
+                router.replace("/")
+              }
             } else {
               // sign in was cancelled by user
               console.log("sign in was cancelled by user")
@@ -72,13 +91,13 @@ export function SessionProvider({ children }: PropsWithChildren) {
               // an error that's not related to google sign in occurred
             }
           }
-          router.replace("/")
         },
         signOut: () => {
           GoogleSignin.signOut()
           setSession(null);
         },
         session,
+        refreshToken,
         isLoading,
       }}>
       {children}
