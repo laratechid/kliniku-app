@@ -1,7 +1,14 @@
-import { useContext, createContext, type PropsWithChildren } from 'react';
-import { useStorageState } from './auth-storage';
-import { GoogleSignin, isSuccessResponse, isErrorWithCode, statusCodes } from '@react-native-google-signin/google-signin';
+import {
+  GoogleSignin,
+  isSuccessResponse,
+  isErrorWithCode,
+  statusCodes,
+} from '@react-native-google-signin/google-signin';
 import { router } from 'expo-router';
+import { useContext, createContext, type PropsWithChildren } from 'react';
+
+import { useStorageState } from './auth-storage';
+
 import { env } from '~/config/env';
 import { request } from '~/helper/request';
 import { Response } from '~/interface/response';
@@ -44,45 +51,45 @@ export function SessionProvider({ children }: PropsWithChildren) {
     <AuthContext.Provider
       value={{
         updateSession: (token) => {
-          setSession(token)
+          setSession(token);
         },
         updateRefreshToken: (token) => {
-          setRefreshToken(token)
+          setRefreshToken(token);
         },
         googleSignIn: async () => {
           GoogleSignin.configure({
-            webClientId: env.googleOauthWebClientId
+            webClientId: env.googleOauthWebClientId,
           });
           try {
             await GoogleSignin.hasPlayServices();
             const response = await GoogleSignin.signIn();
             if (isSuccessResponse(response)) {
               // success login
-              const { idToken } = response.data              
+              const { idToken } = response.data;
               const data: Response = await request({
-                uri: env.klinikuApiUrl + "/auth/google/register",
-                method: "POST",
-                body: { idToken }
-              })
-              if (data.statusCode == 200){
+                uri: env.klinikuApiUrl + '/auth/google/register',
+                method: 'POST',
+                body: { idToken },
+              });
+              if (data.statusCode == 200) {
                 setSession(data.message.token);
                 setRefreshToken(data.message.refreshToken);
-                router.replace("/")
+                router.replace('/');
               }
             } else {
               // sign in was cancelled by user
-              console.log("sign in was cancelled by user")
+              console.log('sign in was cancelled by user');
             }
           } catch (error) {
             if (isErrorWithCode(error)) {
               switch (error.code) {
                 case statusCodes.IN_PROGRESS:
                   // operation (eg. sign in) already in progress
-                  console.log("in progress")
+                  console.log('in progress');
                   break;
                 case statusCodes.PLAY_SERVICES_NOT_AVAILABLE:
                   // Android only, play services not available or outdated
-                  console.log("play services not available or outdated")
+                  console.log('play services not available or outdated');
                   break;
                 default:
                 // some other error happened
@@ -93,7 +100,7 @@ export function SessionProvider({ children }: PropsWithChildren) {
           }
         },
         signOut: () => {
-          GoogleSignin.signOut()
+          GoogleSignin.signOut();
           setSession(null);
         },
         session,

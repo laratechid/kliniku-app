@@ -12,7 +12,7 @@ import { request } from '~/helper/request';
 import { ResponsePaginate } from '~/interface/response';
 
 export default function ClinicListScreen() {
-  const { session } = useSession()
+  const { session } = useSession();
   const [data, setData] = useState<ResponsePaginate>({
     statusCode: 200,
     message: [],
@@ -23,10 +23,10 @@ export default function ClinicListScreen() {
 
   const fetchData = async () => {
     const data = await request({
-      uri: env.klinikuApiUrl + "/clinic?page=1&limit=10",
-      token: session as string
-    })
-    const response: ResponsePaginate = data
+      uri: env.klinikuApiUrl + '/clinic?page=1&limit=10',
+      token: session as string,
+    });
+    const response: ResponsePaginate = data;
     setData(response);
     return response;
   };
@@ -49,17 +49,17 @@ export default function ClinicListScreen() {
       <Stack.Screen options={{ title: 'ClinicList', headerShown: false }} />
       <ScrollView>
         <Container className="mt-20 p-6">
-        <View className="flex flex-row items-center bg-gray-200 rounded-xl">
-          <View className="basis-5/6 mx-2">
-            <TextInput
-              className="my-3 px-5 rounded-xl border border-amber-300 text-gray-500 placeholder:text-gray-300 focus:border-amber-500 focus:shadow focus:shadow-amber-200 focus:outline-amber-500"
-              placeholder="Cari klinik"
-            />
+          <View className="flex flex-row items-center rounded-xl bg-gray-200">
+            <View className="mx-2 basis-5/6">
+              <TextInput
+                className="my-3 rounded-xl border border-amber-300 px-5 text-gray-500 placeholder:text-gray-300 focus:border-amber-500 focus:shadow focus:shadow-amber-200 focus:outline-amber-500"
+                placeholder="Cari klinik"
+              />
+            </View>
+            <View className="flex-auto">
+              <FontAwesomeIcon icon={faFilter} size={18} color="gray" />
+            </View>
           </View>
-          <View className='flex-auto'>
-            <FontAwesomeIcon icon={faFilter} size={18} color="gray" />
-          </View>
-        </View>
           <View>
             {data.message.map((item, index) => (
               <Pressable
@@ -99,7 +99,6 @@ export default function ClinicListScreen() {
               </Pressable>
             ))}
           </View>
-
         </Container>
       </ScrollView>
     </>
