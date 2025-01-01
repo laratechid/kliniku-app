@@ -9,11 +9,7 @@
       "output": "static",
       "favicon": "./assets/favicon.png"
     },
-    "plugins": [
-      "expo-router",
-      "@react-native-google-signin/google-signin",
-      "expo-secure-store"
-    ],
+    "plugins": ["expo-router", "@react-native-google-signin/google-signin", "expo-secure-store"],
     "experiments": {
       "typedRoutes": true,
       "tsconfigPaths": true
@@ -26,17 +22,13 @@
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
-    "assetBundlePatterns": [
-      "**/*"
-    ],
+    "assetBundlePatterns": ["**/*"],
     "ios": {
       "supportsTablet": true,
       "bundleIdentifier": "com.laratech.kliniku"
     },
     "android": {
-      "permissions": [
-        "INTERNET"
-      ],
+      "permissions": ["INTERNET"],
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"

@@ -7,13 +7,13 @@ import { mainMenu } from '~/static/menu';
 export const MainMenu = () => {
   return (
     <>
-      <View className="justify-center m-3">
+      <View className="m-3 justify-center">
         <SimpleGrid
           listKey=""
           data={mainMenu}
           itemDimension={60}
           renderItem={({ item }) => (
-            <View className="items-center m-2">
+            <View className="m-2 items-center">
               <Image source={require('../assets/favicon.png')} style={{ width: 40, height: 40 }} />
               <Text className="text-xs text-slate-500">{item}</Text>
             </View>

@@ -1,3 +1,5 @@
+import { faStar } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 import { Stack, useLocalSearchParams, useRouter } from 'expo-router';
 import React, { useEffect, useState } from 'react';
 import { ScrollView, View, Text, Dimensions, ImageBackground, Pressable } from 'react-native';
@@ -5,16 +7,14 @@ import { SimpleGrid } from 'react-native-super-grid';
 
 import { ClinicProfile } from '~/components/clinic-detail';
 import { Container } from '~/components/container';
-import { ImageCarousel } from '~/components-micro/carousel';
-import { Response } from '~/interface/response';
-import { env } from '~/config/env';
 import { useSession } from '~/components/middleware/context';
+import { ImageCarousel } from '~/components-micro/carousel';
+import { env } from '~/config/env';
 import { request } from '~/helper/request';
-import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
-import { faStar } from '@fortawesome/free-solid-svg-icons';
+import { Response } from '~/interface/response';
 
 export default function ClinicDetailScreen() {
-  const { session } = useSession()
+  const { session } = useSession();
   const router = useRouter();
   const { width } = Dimensions.get('window');
   const { id } = useLocalSearchParams();
@@ -26,9 +26,9 @@ export default function ClinicDetailScreen() {
   const fetchData = async () => {
     const data = await request({
       uri: env.klinikuApiUrl + `/clinic/${id}`,
-      token: session as string
-    })
-    const response: Response = data
+      token: session as string,
+    });
+    const response: Response = data;
     setData(response);
     return response;
   };
@@ -42,15 +42,14 @@ export default function ClinicDetailScreen() {
       <Stack.Screen options={{ title: 'ClinicList', headerShown: false }} />
       <ScrollView>
         <Container className="mt-10 p-6">
-          <View className="mt-10 rounded-xl bg-slate-50 p-4 border border-indigo-200">
-
+          <View className="mt-10 rounded-xl border border-indigo-200 bg-slate-50 p-4">
             <ClinicProfile
               name={data.name}
               address={data.adress}
               imageProfile={data.imageProfile}
               schedules={data.schedules}
               firstRow={
-                <View className="mr-2 h-24 basis-3/12 overflow-hidden rounded-xl justify-center items-center border border-indigo-300">
+                <View className="mr-2 h-24 basis-3/12 items-center justify-center overflow-hidden rounded-xl border border-indigo-300">
                   <View className="flex flex-row flex-wrap">
                     <Text className="ms-1 mt-1 text-sm text-slate-500">Rating</Text>
                   </View>
@@ -65,8 +64,7 @@ export default function ClinicDetailScreen() {
 
           <View className="mt-3 rounded-xl border border-indigo-200 bg-indigo-50 p-2">
             <ImageCarousel images={data.images} />
-            <Text className="ms-4 mt-4 text-sm text-slate-700">{data.vision}
-            </Text>
+            <Text className="ms-4 mt-4 text-sm text-slate-700">{data.vision}</Text>
           </View>
           <Text className="ms-2 mt-8 text-sm text-slate-700">Pilih Layanan</Text>
           <View className="mx-5 mt-3">
@@ -79,7 +77,12 @@ export default function ClinicDetailScreen() {
                   onPress={() =>
                     router.push({
                       pathname: '/polyclinic/detail',
-                      params: { id: item.id, clinicName: data.name, adress: data.adress, imageProfile: data.imageProfile },
+                      params: {
+                        id: item.id,
+                        clinicName: data.name,
+                        adress: data.adress,
+                        imageProfile: data.imageProfile,
+                      },
                     })
                   }>
                   <ImageBackground

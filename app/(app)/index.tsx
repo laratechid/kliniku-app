@@ -8,14 +8,14 @@ import { SimpleGrid } from 'react-native-super-grid';
 import { Container } from '~/components/container';
 import { MainMenu } from '~/components/main-menu';
 import { MainSearch } from '~/components/main-search';
-import { PressableSection } from '~/components-micro/pressable-section';
-import { ResponsePaginate } from '~/interface/response';
-import { env } from '~/config/env';
 import { useSession } from '~/components/middleware/context';
+import { PressableSection } from '~/components-micro/pressable-section';
+import { env } from '~/config/env';
 import { request } from '~/helper/request';
+import { ResponsePaginate } from '~/interface/response';
 
 export default function Home() {
-  const { signOut, session } = useSession()
+  const { signOut, session, refreshToken } = useSession();
   const [data, setData] = useState<ResponsePaginate>({
     statusCode: 200,
     message: [],
@@ -26,10 +26,10 @@ export default function Home() {
 
   const fetchData = async () => {
     const data = await request({
-      uri: env.klinikuApiUrl + "/clinic?page=1&limit=10",
-      token: session as string
-    })
-    const response: ResponsePaginate = data
+      uri: env.klinikuApiUrl + '/clinic?page=1&limit=10',
+      token: session as string,
+    });
+    const response: ResponsePaginate = data;
     setData(response);
     return response;
   };
@@ -43,8 +43,8 @@ export default function Home() {
   return (
     <>
       <Stack.Screen options={{ title: 'Home', headerShown: false }} />
-      <ScrollView className='bg-white'>
-        <Container className='p-6'>
+      <ScrollView className="bg-white">
+        <Container className="p-6">
           <View className="mt-10">
             <MainSearch />
           </View>
@@ -52,8 +52,12 @@ export default function Home() {
             <MainMenu />
           </View>
           <View>
-          {/* <Button title='Get User' onPress={() => console.log(session, "token")} />
-            <Button title='Logout' onPress={() => signOut()} /> */}
+            {/* <Button
+              title="Get refresh token"
+              onPress={() => console.log(refreshToken, 'refreshToken')}
+            />
+            <Button title="Get token" onPress={() => console.log(session, 'token')} /> */}
+            {/* <Button title='Logout' onPress={() => signOut()} /> */}
             <PressableSection
               title="Klinik Sekitarmu"
               href={{ pathname: '/clinic/list', params: { name: 'Hai' } }}
@@ -69,8 +73,8 @@ export default function Home() {
                     params: { id: item.id },
                   })
                 }
-                className="my-1 rounded-xl bg-indigo-50 shadow border border-indigo-100">
-                <View className="flex flex-row p-2 border border-indigo-50 rounded-xl">
+                className="my-1 rounded-xl border border-indigo-100 bg-indigo-50 shadow">
+                <View className="flex flex-row rounded-xl border border-indigo-50 p-2">
                   <View className="basis-1/3">
                     <Image
                       source={{ uri: item.images[0] }}

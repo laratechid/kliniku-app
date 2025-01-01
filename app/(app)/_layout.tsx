@@ -1,5 +1,6 @@
-import { Text } from 'react-native';
 import { Redirect, Stack } from 'expo-router';
+import { Text } from 'react-native';
+
 import { useSession } from '~/components/middleware/context';
 
 export default function AppLayout() {
